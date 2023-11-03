@@ -3,6 +3,7 @@ import { device } from 'styles/Breakpoints';
 
 interface BlackHeaderBannerProps{
   height?: string;
+  smHeight?: string;
 }
 
 const BlackHeaderBannerImage = styled.div<BlackHeaderBannerProps>`
@@ -10,17 +11,18 @@ const BlackHeaderBannerImage = styled.div<BlackHeaderBannerProps>`
   height: ${props => props.height ? props.height : '294px'};
   background: #202020;
   @media ${device.sm} {
-    height: 220px;
+    height: ${props => props.smHeight ? props.smHeight : '220px'};
   }
 `
 
 const BlackHeaderBanner = (
   {
-    height
+    height,
+    smHeight
   }: BlackHeaderBannerProps
 ) => {
   return (
-    <BlackHeaderBannerImage height={height}>
+    <BlackHeaderBannerImage height={height} smHeight = {smHeight}>
 
     </BlackHeaderBannerImage>
   )

@@ -4,6 +4,9 @@ const MyListedNFTCardStyle = styled.div`
   border-radius: 3px;
   max-width: 256px;
   width: 100%;
+  @media screen and (max-width: 768px) {
+    width: 156px;
+  }
 `
 
 const ListedBadge = styled.div`
@@ -24,6 +27,9 @@ const ListedBadge = styled.div`
   justify-content: center;
   align-items: center;
   font-family: 'Open Sans';
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `
 
 const BundleBadge = styled.div`
@@ -44,6 +50,9 @@ const BundleBadge = styled.div`
   justify-content: center;
   align-items: center;
   font-family: 'Open Sans';
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `
 
 export {

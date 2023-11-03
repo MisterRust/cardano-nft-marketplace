@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Modal } from 'react-bootstrap';
 import CustomImage from 'components/common/CustomImage';
-import { VERIFIED_ICON_IMAGE } from 'constants/image.constants';
+import { EXCLAMATION_ICON, VERIFIED_ICON_IMAGE } from 'constants/image.constants';
 import { device } from 'styles/Breakpoints';
 import { FlexBox } from 'components/common/FlexBox';
 import CustomButton from 'components/common/CustomButton';
@@ -14,6 +14,7 @@ import { useWalletConnect } from 'context/WalletConnect';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 import { getNFTDetailByAsset } from 'api/api';
 import { useCart } from 'context/CartContext';
+import { ListedBadge, PurchaseCardComp, PurchaseCardImage } from './index.styled';
 
 const StyledModal = styled(Modal)`
   .modal-dialog{
@@ -38,7 +39,7 @@ const StyledModal = styled(Modal)`
     overflow: hidden;
     border: none;
     @media screen and (max-width: 550px) {
-      height: 100%;
+      height: 100vh;
     }
   }
 `;
@@ -51,7 +52,9 @@ const ModalBody = styled(Modal.Body)`
   padding-right: 66px;
   padding-bottom: 72px;
   @media ${device.sm} {
-    padding-top: 148px;
+    padding-top: 144px;
+    padding-left: 31px;
+    padding-right: 31px;
   }
   &.modal-body{
   }
@@ -110,8 +113,12 @@ const PurchaseCartModal = ({ show, onClose, purchaseCarts }: Props) => {
     const { cartData, addToCart, removeFromCart } = useCart()
     console.log("cartData", cartData)
     useEffect(() => {
+        console.log("hey")
         if (cartData.length > 0) {
             getNFTData()
+        } else {
+            setTotalPrice(0)
+            setNFTData([])
         }
     }, [cartData])
 
@@ -119,6 +126,7 @@ const PurchaseCartModal = ({ show, onClose, purchaseCarts }: Props) => {
         const nfts = [];
         let price = 0;
         for (let i = 0; i < cartData.length; i++) {
+            console.log("cartData", cartData)
             // get detail data of one specific nft
             const response = await getNFTDetailByAsset(Object.keys(cartData[i].nfts)[0])
             price += parseInt(cartData[i].amount) / 1000000
@@ -127,7 +135,8 @@ const PurchaseCartModal = ({ show, onClose, purchaseCarts }: Props) => {
                 asset: response.asset,
                 image: response.onchain_metadata.image,
                 price: parseInt(cartData[i].amount) / 1000000,
-                utxo: cartData[i].utxo
+                utxo: cartData[i].utxo,
+                isBundle: Object.values(cartData[i].nfts).length > 1
             })
         }
         setNFTData(nfts)
@@ -139,126 +148,170 @@ const PurchaseCartModal = ({ show, onClose, purchaseCarts }: Props) => {
             <Modal.Header closeButton>
             </Modal.Header>
             <ModalBody>
-                <FlexBox direction='column' gap='12px' borderBottom='1px #cecece solid'
-                    padding='12px 25px'
-                >
-                    <H3>Your cart</H3>
-                    <H8>
-                        Please review all information before submitting.
-                    </H8>
-                </FlexBox>
-                <FlexBox marginTop='32px' paddingLeft='25px' paddingRight='25px' direction='column'>
-                    <CustomText
-                        text={`${nftData.length} items`}
-                        fontSize='16px'
-                        fontWeight='600'
-                        fontFamily='Open Sans'
-                        marginBottom='23px'
-                    />
-                    <ScrollFlex>
-                        {
-                            nftData && nftData.map((nft, index) => {
-                                return (
-                                    <FlexBox justifyContent='start' gap='28px' alignItems='center'
-                                        key={index}
-                                    >
-                                        <CustomImage
-                                            image={getExactImageFormat(nft.image)}
-                                            width='100px'
-                                            height='100px'
-                                            borderRadius='2.4px'
-                                        />
-                                        <FlexBox justifyContent='space-between'>
-                                            <FlexBox direction='column' gap='8px' maxWidth='150px'>
-                                                <CustomText
-                                                    text={
-                                                        nft.name
-                                                    }
-                                                    fontWeight='700'
-                                                    fontSize='21px'
-                                                    maxWidth='149px'
-                                                    className='three-dots'
-                                                    display='block'
-                                                />
-                                                <FlexBox justifyContent='start' gap='10px' alignItems='center'>
-
-                                                    <CustomText
-                                                        fontSize='14px'
-                                                        fontWeight='400'
-                                                        color='#f73737'
-                                                        maxWidth='310px'
-                                                        className='three-dots'
-                                                        display='block'
-                                                        text={COLLECTION_DATA.hasOwnProperty(nft.asset.slice(0, 56)) ? COLLECTION_DATA[nft.asset.slice(0, 56)].name : nft.asset.slice(0, 56)}
-                                                    />
-                                                    {
-                                                        COLLECTION_DATA.hasOwnProperty(nft.asset.slice(0, 56)) &&
-                                                        <CustomImage
-                                                            image={VERIFIED_ICON_IMAGE}
-                                                            width='22px'
-                                                            height='21px'
-                                                        />
-                                                    }
-
-                                                </FlexBox>
-                                            </FlexBox>
-                                            <FlexBox direction='column' width='auto' gap="4px" paddingRight='10px'>
-                                                <CustomText
-                                                    text={`₳${nft.price}`}
-                                                    color='#6073F6'
-                                                    fontFamily='Inconsolata'
-                                                    fontSize='21px'
-                                                    fontWeight='700'
-                                                    width='100%'
-                                                    justifyContent='end'
-                                                />
-                                                <RemoveButton onClick={() => {
-                                                    removeFromCart(nft)
-                                                }}>
-                                                    Remove
-                                                </RemoveButton>
-                                            </FlexBox>
-                                        </FlexBox>
-                                    </FlexBox>
-                                )
-                            })
-                        }
-                    </ScrollFlex>
-
-
-                    <FlexBox justifyContent='space-between' marginTop='24px' alignItems='center'>
-                        <CustomText
-                            text={`Total Price:`}
-                            fontFamily='Open Sans'
-                            fontWeight='600'
-                            fontSize='16px'
+                {
+                    nftData.length === 0 &&
+                    <>
+                        <CustomImage
+                            image={EXCLAMATION_ICON}
+                            width='80px'
+                            height='80px'
                         />
-                        {
-                            totalPrice &&
-                            <CustomText
-                                text={`₳ ${totalPrice}`}
-                                fontFamily='Open Sans'
-                                fontWeight='700'
-                                fontSize='28px'
-                                color='#6073F6'
-                            />
-                        }
-
-
-                    </FlexBox>
-
-                    <FlexBox marginTop='56px'>
+                        <CustomText
+                            text="Uh oh!"
+                            fontSize='50px'
+                            fontWeight='700'
+                            marginTop='37px'
+                        />
+                        <CustomText
+                            text="Your cart is empty. Please add one or more NFTs to proceed to check out. "
+                            fontSize='Open Sans'
+                            fontWeight='400'
+                            marginTop='16px'
+                            textAlign='center'
+                            width='410px'
+                        />
                         <CustomButton
-                            text='Purchase Now'
+                            text='Close'
                             width='286px'
                             height='48px'
-                            disabled={myWalletAddress === undefined}
-                            onClick={() => {
-                                purchaseCarts()
-                            }}
+                            bgColor='#1b78af'
+                            marginTop='73px'
+                            onClick={() => onClose()}
                         />
-                    </FlexBox>
-                </FlexBox>
+                    </>
+                }
+                {
+                    nftData.length > 0 &&
+                    <>
+                        <FlexBox direction='column' gap='12px' borderBottom='1px #cecece solid'
+                            padding='12px 25px'
+                        >
+                            <H3>Your cart</H3>
+                            <H8>
+                                Please review all information before submitting.
+                            </H8>
+                        </FlexBox>
+                        <FlexBox marginTop='32px' paddingLeft='25px' paddingRight='25px' direction='column'>
+                            <CustomText
+                                text={`${nftData.length} items`}
+                                fontSize='16px'
+                                fontWeight='600'
+                                fontFamily='Open Sans'
+                                marginBottom='23px'
+                            />
+                            <ScrollFlex>
+                                {
+                                    nftData && nftData.map((nft, index) => {
+                                        return (
+                                            <FlexBox justifyContent='start' gap='28px' alignItems='center'
+                                                key={index}
+                                            >
+                                                <PurchaseCardComp>
+                                                    {
+                                                        nft.isBundle &&
+                                                        <ListedBadge>
+                                                            Bundle
+                                                        </ListedBadge>
+                                                    }
+
+                                                    <PurchaseCardImage
+                                                        src={getExactImageFormat(nft.image)}
+                                                    />
+                                                </PurchaseCardComp>
+
+                                                <FlexBox justifyContent='space-between'>
+                                                    <FlexBox direction='column' gap='8px' maxWidth='150px'>
+                                                        <CustomText
+                                                            text={
+                                                                nft.name
+                                                            }
+                                                            fontWeight='700'
+                                                            fontSize='21px'
+                                                            maxWidth='149px'
+                                                            className='three-dots'
+                                                            display='block'
+                                                        />
+                                                        <FlexBox justifyContent='start' gap='10px' alignItems='center'>
+
+                                                            <CustomText
+                                                                fontSize='14px'
+                                                                fontWeight='400'
+                                                                color='#f73737'
+                                                                maxWidth='310px'
+                                                                className='three-dots'
+                                                                display='block'
+                                                                text={COLLECTION_DATA.hasOwnProperty(nft.asset.slice(0, 56)) ? COLLECTION_DATA[nft.asset.slice(0, 56)].name : nft.asset.slice(0, 56)}
+                                                            />
+                                                            {
+                                                                COLLECTION_DATA.hasOwnProperty(nft.asset.slice(0, 56)) &&
+                                                                <CustomImage
+                                                                    image={VERIFIED_ICON_IMAGE}
+                                                                    width='22px'
+                                                                    height='21px'
+                                                                />
+                                                            }
+
+                                                        </FlexBox>
+                                                    </FlexBox>
+                                                    <FlexBox direction='column' width='auto' gap="4px" paddingRight='10px'>
+                                                        <CustomText
+                                                            text={`₳${nft.price}`}
+                                                            color='#6073F6'
+                                                            fontFamily='Inconsolata'
+                                                            fontSize='21px'
+                                                            fontWeight='700'
+                                                            width='100%'
+                                                            justifyContent='end'
+                                                        />
+                                                        <RemoveButton onClick={() => {
+                                                            removeFromCart(nft)
+                                                        }}>
+                                                            Remove
+                                                        </RemoveButton>
+                                                    </FlexBox>
+                                                </FlexBox>
+                                            </FlexBox>
+                                        )
+                                    })
+                                }
+                            </ScrollFlex>
+
+
+                            <FlexBox justifyContent='space-between' marginTop='24px' alignItems='center'>
+                                <CustomText
+                                    text={`Total Price:`}
+                                    fontFamily='Open Sans'
+                                    fontWeight='600'
+                                    fontSize='16px'
+                                />
+                                {
+                                    totalPrice &&
+                                    <CustomText
+                                        text={`₳ ${totalPrice}`}
+                                        fontFamily='Open Sans'
+                                        fontWeight='700'
+                                        fontSize='28px'
+                                        color='#6073F6'
+                                    />
+                                }
+
+
+                            </FlexBox>
+
+                            <FlexBox marginTop='56px'>
+                                <CustomButton
+                                    text='Purchase Now'
+                                    width='286px'
+                                    height='48px'
+                                    disabled={myWalletAddress === undefined}
+                                    onClick={() => {
+                                        purchaseCarts()
+                                    }}
+                                />
+                            </FlexBox>
+                        </FlexBox>
+                    </>
+                }
             </ModalBody>
         </StyledModal>
     )

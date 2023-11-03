@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useState, useEffect, useContext } from 'react';
 import { Blockfrost, Lucid, WalletApi } from 'lucid-cardano';
 import { useLocalStorage } from 'react-use';
+import axios from 'axios';
 
 interface WalletConnectContextValues {
   api: WalletApi | null;
@@ -41,10 +42,11 @@ export const WalletConnectProvider = ({ children }: PropsWithChildren) => {
 
   const enableWallet = async (name: string) => {
     const api = await window.cardano[name].enable();
+    const blockfrost_api = await axios.get("https://l1bojqdfq5.execute-api.us-west-2.amazonaws.com/apis")
     const newLucid = await Lucid.new(
       new Blockfrost(
         "https://cardano-mainnet.blockfrost.io/api/v0",
-        process.env.REACT_APP_BLOCKFROST_API_KEY
+        blockfrost_api.data.api
       ),
       "Mainnet"
     );
@@ -52,8 +54,9 @@ export const WalletConnectProvider = ({ children }: PropsWithChildren) => {
     setApi(api);
     setActiveWalletName(name);
     setLucid(newLucid);
+    
     const my_wallet_address = await newLucid.wallet.address();
-    // const my_wallet_address = "addr1q9m863n9rukl0e7ley0t2mqeqpu069datc6qs4gdukhaxxnr8lv7uxlmykp28rhdc0vsyynqnpt3jhk7uj407u6q5pxq34fuh7"
+    // const my_wallet_address = "addr1qx6t9lekhxce25xvfwe6quwl95u4vqmdk3j43zjyvzxj9p7ksjdge25uu0v80msy0a4vakla928d4dsssd0796ga2guqckmhgg"
 
 
 

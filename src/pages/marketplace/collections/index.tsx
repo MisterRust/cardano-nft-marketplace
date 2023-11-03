@@ -9,21 +9,15 @@ import { H2 } from 'components/typography'
 import { BLACK_DOWN_ICON, BLACK_UP_ICON, DOWN_FILTER_ICON_IMAGE, MARKETPLACE_HEADER_IMAGE, UP_FILTER_ICON_IMAGE } from 'constants/image.constants'
 import VERIFIED_COLLECTIONS from 'constants/verified.collections.constant'
 import { Container, PageWrapper } from 'styles/GlobalStyles'
-import { useState, CSSProperties, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMedia } from 'react-use'
 
 const filterCategories = {
   "Rewards": [
     "Lorem Ipsum",
     "Lorem Ipsum",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
   ],
   "PFP": [
-    "Lorem Ipsum",
-    "Lorem Ipsum",
-    "Lorem Ipsum",
     "Lorem Ipsum",
     "Lorem Ipsum",
   ],
@@ -34,6 +28,31 @@ const filterCategories = {
     "Lorem Ipsum",
     "Lorem Ipsum",
   ],
+  "Gaming": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Membership": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Photography": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Fashion": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ]
 }
 const AllCollections = () => {
   const [isFilter, setIsFilter] = useState<boolean>(false)
@@ -147,7 +166,6 @@ const AllCollections = () => {
                   bgColor='#E7E7E7'
                 />
                 <FlexBox marginTop='24px' direction='column'>
-
                   {
                     Object.keys(filterCategories).map((filter, index) => {
                       return (
@@ -226,29 +244,28 @@ const AllCollections = () => {
                 </FlexBox>
               </FlexBox>
             }
-            <FlexBox justifyContent='start' direction='column'>
-              <FlexBox
-                flexWrap='wrap'
-                gap={isFilter ? "40px 62px" : "40px 98px"}
-                justifyContent='center'
-                smJustifyContent='center'
-                smAlignItems='center'
-                smGap='14px 29px'
-              >
-                {
-                  // @ts-ignore
-                  activeShowingData && activeShowingData.map((collection, index) => {
-                    return (
-                      <CollectionCard
-                        key={index}
-                        hero={collection.hero}
-                        name={collection.name}
-                        policyId={collection.policyId}
-                      />
-                    )
-                  })
-                }
-              </FlexBox>
+            <FlexBox
+              flexWrap='wrap'
+              gap={isFilter ? "40px 62px" : "40px 98px"}
+              justifyContent='center'
+              smJustifyContent='center'
+              smAlignItems='center'
+              smGap='14px 29px'
+              smDirection='row'
+            >
+              {
+                // @ts-ignore
+                activeShowingData && activeShowingData.map((collection, index: number) => {
+                  return (
+                    <CollectionCard
+                      key={index}
+                      hero={collection.hero}
+                      name={collection.name}
+                      policyId={collection.policyId}
+                    />
+                  )
+                })
+              }
             </FlexBox>
           </FlexBox>
         </FlexBox>

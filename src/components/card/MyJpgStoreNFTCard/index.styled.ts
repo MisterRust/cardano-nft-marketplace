@@ -5,6 +5,9 @@ export const MyJpgStoreNFTCardStyle = styled.div`
   border-radius: 3px;
   max-width: 256px;
   width: 100%;
+  @media screen and (max-width: 768px) {
+    max-width: 156px;
+  }
 `
 
 export const JpgStoreBadge = styled.img`
@@ -22,6 +25,9 @@ export const JpgStoreBadge = styled.img`
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   border: none;
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `
 
 export const BundleBadge = styled.div`
@@ -42,4 +48,7 @@ export const BundleBadge = styled.div`
   justify-content: center;
   align-items: center;
   font-family: 'Open Sans';
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `

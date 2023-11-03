@@ -53,7 +53,7 @@ const SpecCollectionStats = ({
   volume
 }: SpecCollectionStatsType) => {
   return (
-    <FlexBox smDirection='row' justifyContent='start' gap='16px' smGap='14px'>
+    <FlexBox smDirection='row' justifyContent='start' gap='16px' smGap='14px' smJustifyContent='center'>
       <FlexBox direction='column' gap="10px" width='default' alignItems='center'>
         <StatsSubject>Items</StatsSubject>
         <StatsValue>{items}</StatsValue>
@@ -71,7 +71,7 @@ const SpecCollectionStats = ({
       <VerticalLine />
       <FlexBox direction='column' gap="10px" width='default' alignItems='center'>
         <StatsSubject>Listed</StatsSubject>
-        <StatsValue>9.42</StatsValue>
+        <StatsValue>9.42%</StatsValue>
       </FlexBox>
       <VerticalLine />
       <FlexBox direction='column' gap="10px" width='default' alignItems='center'>

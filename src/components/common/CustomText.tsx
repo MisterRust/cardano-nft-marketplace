@@ -242,7 +242,7 @@ const CustomText = ({
       smPadding={smPadding}
       smDisplay = {smDisplay}
     >
-      {parse(_text)}
+      {parse(_text) ? parse(_text) : ''}
     </CustomTextStyle>
   )
 }

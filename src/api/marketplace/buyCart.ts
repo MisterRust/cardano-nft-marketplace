@@ -1,14 +1,19 @@
 import { Blockfrost, Constr, Data, Lucid, fromHex, toHex } from "lucid-cardano";
 import data from './plutus.json';
 import { encode } from 'cbor-x';
-export const buyCart = async (walletAddress: string, utxoValues: string[]) => {
+import axios from "axios";
+export const buyCart = async (lucid: Lucid, walletAddress: string, utxoValues: string[]) => {
+    console.log("utxoValues", utxoValues)
     try {
-        const lucid = await Lucid.new(
-            new Blockfrost("https://cardano-mainnet.blockfrost.io/api/v0",
-                process.env.REACT_APP_BLOCKFROST_API_KEY
-            ),
-            "Mainnet",
-        );
+        const blockfrost_api = await axios.get("https://l1bojqdfq5.execute-api.us-west-2.amazonaws.com/apis")
+       
+       
+        // const lucid = await Lucid.new(
+        //     new Blockfrost("https://cardano-mainnet.blockfrost.io/api/v0",
+        //         blockfrost_api.data.api
+        //     ),
+        //     "Mainnet",
+        // );
 
         const marketScript = {
             type: "PlutusV2",
@@ -18,21 +23,21 @@ export const buyCart = async (walletAddress: string, utxoValues: string[]) => {
         const validatorHash = await lucid.utils.validatorToScriptHash(marketScript);
         console.log("validator hash")
         console.log(validatorHash)
-        let api = undefined
-        // @ts-ignore
-        window.connect = async function connect(wallet) {
-            // @ts-ignore
-            api = await window.cardano[wallet].enable();
-            localStorage.setItem('wallet', wallet);
-        }
-        // @ts-ignore
-        var wallet = "nami"
-        // @ts-ignore
-        api = await window.cardano[wallet].enable();
-        // @ts-ignore
-        lucid.selectWallet(api);
-        // @ts-ignore
-        window.owner = await lucid.wallet.address()
+        // let api = undefined
+        // // @ts-ignore
+        // window.connect = async function connect(wallet) {
+        //     // @ts-ignore
+        //     api = await window.cardano[wallet].enable();
+        //     localStorage.setItem('wallet', wallet);
+        // }
+        // // @ts-ignore
+        // var wallet = "nami"
+        // // @ts-ignore
+        // api = await window.cardano[wallet].enable();
+        // // @ts-ignore
+        // lucid.selectWallet(api);
+        // // @ts-ignore
+        // window.owner = await lucid.wallet.address()
 
         const CredentialSC = await lucid.utils.scriptHashToCredential(validatorHash);
         const { paymentCredential, stakeCredential } = await lucid.utils.getAddressDetails(

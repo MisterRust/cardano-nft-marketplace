@@ -42,7 +42,7 @@ const SearchInputStyle = styled.input<CustomSearchInputType>`
 
   @media screen and (max-width: 550px) {
     height: 42px;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
     background-size: 22px 22px;
     padding: 12px 12px 12px 48px !important;

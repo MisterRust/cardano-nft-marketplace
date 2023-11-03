@@ -49,6 +49,7 @@ const ADABadge = styled.div`
 const RaffleImage = styled.img`
   width: 380px;
   height: 380px;
+  border-radius: 3px 3px 0 0;
   @media ${device.sm} {
     width: 156px;
     height: 156px;
@@ -77,6 +78,7 @@ const RaffleCard = ({ item, onClick, floorPrice, featured }: RaffleCardType) => 
           // @ts-ignoreF
           `image${item?.name}`
         }
+        
       />
 
       <FlexBox

@@ -54,7 +54,7 @@ export const DEFAULT_WALLET_NFT_IMAGE = "/assets/images/default_nft_wallet.svg";
 
 export const DEFAULT_PACKAGE_IMAGE = "/assets/images/default_package.svg"
 
-
+export const QUESTION_ICON = "/assets/images/icons/question.svg"
 
 export const ARROW_DOWN_ICON = "/assets/images/icons/arrow_down.svg";
 export const ARROW_UP_ICON = "/assets/images/icons/arrow_up.svg";
@@ -68,6 +68,9 @@ export const SELECT_UP_ICON = "/assets/images/icons/select_up.svg";
 export const WALLET_ICON = "/assets/images/icons/wallet.svg"
 
 export const CART_ICON = "/assets/images/icons/cart.svg"
+
+export const NOTIFICATION_YES_ICON = "/assets/images/icons/notification_yes.svg"
+export const NOTIFICATION_NO_ICON = "/assets/images/icons/notification_no.svg"
 
 export const HOME_HEADER1_IMAGE = "/assets/images/background/home_header1.png";
 export const HOME_HEADER2_IMAGE = "/assets/images/background/home_header2.png";
@@ -87,6 +90,8 @@ export const RAFFLE_HEADER_IMAGE = "/assets/images/background/raffle_header.png"
 export const POLLS_HEADER_IMAGE = "/assets/images/background/polls_header.png";
 export const MARKETPLACE_HEADER_IMAGE = "/assets/images/background/marketplace_header.png";
 export const SPEC_COLLECTION_HEADER_IMAGE = "/assets/images/background/spec_collection_header.png";
+
+export const EXCLAMATION_ICON = "/assets/images/icons/exclamation.svg"
 
 export const COLLECTION_IMAGES = {
     "49b4109aa40548dd55dd106ce58003c9601da016992cc276ed880cd0" :{

@@ -26,11 +26,13 @@ const MyListedNFTCard = ({
     for (let i = 0; i < Object.keys(data.nfts).length; i++) {
       // get detail data of one specific nft
       const response = await getNFTDetailByAsset(Object.keys(data.nfts)[i])
-      nfts.push({
-        name: response.onchain_metadata.name,
-        asset: response.asset,
-        image: response.onchain_metadata.image
-      })
+      if(response){
+        nfts.push({
+          name: response?.onchain_metadata?.name,
+          asset: response?.asset,
+          image: response?.onchain_metadata?.image
+        })
+      }
     }
     setListedNFTs(nfts)
   }, [data])
@@ -69,6 +71,8 @@ const MyListedNFTCard = ({
         width='256px'
         height='256px'
         borderRadius='3px 3px 0px 0px'
+        smWidth='156px'
+        smHeight='156px'
       />
       <FlexBox
         bgColor='white'
@@ -79,6 +83,8 @@ const MyListedNFTCard = ({
         gap='4px'
         width='256px'
         height='79px'
+        smWidth='156px'
+        smHeight='59px'
       >
         <CustomText
           text={listedNFTs && listedNFTs.length > 0 && listedNFTs[0].name ? listedNFTs[activeNFT].name : ''}
@@ -87,6 +93,9 @@ const MyListedNFTCard = ({
           maxWidth='236px'
           className='three-dots'
           display='block'
+          smFontSize='16px'
+          smMaxWidth='139px'
+          smDisplay='block'
         />
         <CustomText
           text={`₳${parseInt(data.amount) / 1000000}`}
@@ -94,6 +103,8 @@ const MyListedNFTCard = ({
           fontWeight='600'
           color='#6073F6'
           fontFamily='Open Sans'
+          smFontSize='16px'
+          smMaxWidth='139px'
         />
       </FlexBox>
 

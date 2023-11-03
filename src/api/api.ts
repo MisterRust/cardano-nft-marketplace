@@ -29,7 +29,7 @@ export const updateUserProfile = async (reqData) => {
  * @returns the data obtained from the API request.
  */
 export const getUserDatabyAddress = async (address: string) => {
-    const url = process.env.REACT_APP_GET_USER_DATA_URL + address;
+    const url = process.env.REACT_APP_GET_USER_DATA_URL + '/' + address;
     try {
         const response = await axios.get(url);
         if (response) {
@@ -86,6 +86,7 @@ export const getTotalUserNumber = async () => {
  * @returns The function `getNFTDetailByAsset` returns the data obtained from the API call.
  */
 export const getNFTDetailByAsset = async (asset: string) => {
+    console.log("getNFTDetailByAsset")
     try {
         const url = process.env.REACT_APP_GET_NFT_DETAIL_URL + asset
         const response = await axios.get(url);

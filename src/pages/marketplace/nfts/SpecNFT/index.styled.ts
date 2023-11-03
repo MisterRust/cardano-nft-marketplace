@@ -36,12 +36,16 @@ export const HistoryTableRow = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+  &.active{
+    background-color: #d9d9d9;
+  }
   div:nth-child(1){
     color: black;
     font-size: 21px;
     font-family: Open Sans;
     font-weight: 400;
     width: 15%;
+    background-color: #b6b6b6;
   }
   div:nth-child(2){
     color: black;
@@ -79,6 +83,134 @@ export const HistoryTableRow = styled.div`
     white-space: nowrap;
     overflow: hidden!important;
     text-overflow: ellipsis;
+  }
+`
+
+export const ComingSoonTableHeader = styled.div`
+  padding: 10px 28px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 21px;
+  font-family: Inconsolata;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.68px;
+  display: flex;
+  margin-top: 24px;
+  max-width: 1210px;
+  width: 100%;
+  letter-spacing: 1.12px;
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    padding: 10px;
+  }
+  div:nth-child(1){
+    width: 16%;
+    margin: 12px 24px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px;
+      width: 35%;
+    }
+  }
+  div:nth-child(2){
+    width: 16%;
+    margin: 12px 24px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px;
+      width: 20%;
+    }
+  }
+  div:nth-child(3){
+    width: 26%;
+    margin: 12px 24px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px;
+      width: 45%;
+    }
+    
+  }
+  div:nth-child(4){
+    width: 26%;
+    margin: 12px 24px;
+  }
+  div:nth-child(5){
+    width: 16%;
+    margin: 12px 24px;
+    
+    
+  }
+`
+
+export const ComingSoonTableRow = styled.div`
+  padding: 10px 28px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 21px;
+  font-family: Inconsolata;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.68px;
+  display: flex;
+  max-width: 1210px;
+  width: 100%;
+  &.active{
+    background-color: #d9d9d9;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+  }
+  div:nth-child(1){
+    width: 16%;
+    margin: 12px 24px;
+    background-color: #b6b6b6;
+    height: 19px;
+    border-radius: 3px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px;
+      height: 12px;
+      width: 35%;
+    }
+  }
+  div:nth-child(2){
+    width: 16%;
+    margin: 12px 24px;
+    background-color: #b6b6b6;
+    height: 19px;
+    border-radius: 3px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px;
+      height: 12px;
+      width: 20%;
+    }
+  }
+  div:nth-child(3){
+    width: 26%;
+    margin: 12px 24px;
+    background-color: #b6b6b6;
+    height: 19px;
+    border-radius: 3px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px !important;
+      height: 12px !important;
+      width: 45%;
+    }
+  }
+  div:nth-child(4){
+    width: 26%;
+    margin: 12px 24px;
+    background-color: #b6b6b6;
+    height: 19px;
+    border-radius: 3px;
+  }
+  div:nth-child(5){
+    width: 16%;
+    margin: 12px 24px;
+    background-color: #b6b6b6;
+    height: 19px;
+    border-radius: 3px;
+    @media screen and (max-width: 768px) {
+      margin: 9px 10px !important;
+      height: 12px !important;
+      width: 50%;
+    }
   }
 `
 
@@ -122,3 +254,4 @@ export const SelectButton = styled.div`
   }
 
 `
+

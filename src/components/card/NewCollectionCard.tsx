@@ -11,6 +11,7 @@ const NewCollectionCardStyle = styled(Link)`
   text-decoration: none;
   max-width: 380px;
   width: 100%;
+  transition: 0.2s;
   &:hover {
     -ms-transform: scale(1.02); /* IE 9 */
     -webkit-transform: scale(1.02); /* Safari 3-8 */
@@ -62,9 +63,6 @@ const CollectionTextFlex = styled.div`
   align-items: center;
   gap: 12px;
   flex: 1 0 0;
-  &:hover{
-    background-color: #ddd;
-  }
   @media screen and (max-width: 550px) {
     width: 156px;
     padding: 10px;

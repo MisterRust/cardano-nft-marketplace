@@ -15,6 +15,10 @@ interface CustomImageStyleType {
   border?: string;
   smMarginTop?: string;
   alt?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  style?: any;
+  smBorderRadius?: string;
 }
 
 
@@ -32,6 +36,7 @@ const CustomImageStyle = styled(LazyLoadImage) <CustomImageStyleType>`
     width: ${(props) => props.smWidth};
     height: ${(props) => props.smHeight};
     margin-top: ${(props) => props.smMarginTop};
+    border-radius: ${(props) => props.smBorderRadius};
   }
 `
 
@@ -49,7 +54,11 @@ const CustomImage = (
     marginTop,
     border,
     smMarginTop,
-    alt
+    alt,
+    onMouseEnter,
+    onMouseLeave,
+    smBorderRadius,
+    style
   }: CustomImageStyleType
 ) => {
   return (
@@ -66,7 +75,11 @@ const CustomImage = (
       marginTop={marginTop}
       border={border}
       smMarginTop={smMarginTop}
-      alt = {alt}
+      alt={alt}
+      onMouseEnter= {onMouseEnter}
+      onMouseLeave= {onMouseLeave}
+      smBorderRadius = {smBorderRadius}
+      style = {style}
     ></CustomImageStyle>
   )
 }

@@ -6,12 +6,15 @@ import { FlexBox } from 'components/common/FlexBox'
 import HeroSlideShow from './components/HeroSlideShow'
 import { useEffect } from 'react'
 import { useWalletConnect } from 'context/WalletConnect'
+import { buyCart } from 'api/marketplace/buyCart'
+import { getCollections } from 'api/marketplace'
 
 const Home = () => {
 
   const { myWalletAddress, lucid } = useWalletConnect()
   useEffect(() => {
     if (myWalletAddress && lucid) {
+      getCollections()
     }
   }, [myWalletAddress, lucid])
 

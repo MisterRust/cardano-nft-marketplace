@@ -43,7 +43,7 @@ const HeroSlideShow = () => {
           smPaddingLeft='0px' smPaddingRight='0px' smPaddingTop='0px' smPaddingBottom='0px'>
           <CustomSwiper
             spaceBetween={30}
-            effect={'fade'}
+            // effect={'fade'}
             centeredSlides={true}
             autoplay={{
               delay: 4000,
@@ -71,6 +71,8 @@ const HeroSlideShow = () => {
                           width='578px'
                           height='400px'
                           smHeight='auto'
+                          borderRadius='10px'
+                          smBorderRadius  = "0px"
                         />
 
                         <FlexBox gap="12px" smDirection='row' justifyContent='start' marginTop='25px' smHeight='default' smJustifyContent='start' smPaddingLeft='16px'>
@@ -109,6 +111,8 @@ const HeroSlideShow = () => {
                           fontWeight='400'
                           fontFamily='Open Sans'
                           smFontSize='16px'
+                          height='112px'
+                          alignItems='start'
                         />
                         <CustomLinkButton
                           text='Learn More'

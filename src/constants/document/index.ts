@@ -23,6 +23,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/cardano.png",
     symbol: "ADA",
     value: "ADA",
+    policyId: "",
+    asset: "",
+    decimals: 6
   },
   "25f0fc240e91bd95dcdaebd2ba7713fc5168ac77234a3d79449fc20c534f4349455459": {
     name: "Ape Society",
@@ -30,6 +33,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/The Ape Society.png",
     symbol: "$SOCIETY",
     value: "SOCIETY",
+    policyId: '25f0fc240e91bd95dcdaebd2ba7713fc5168ac77234a3d79449fc20c',
+    asset: '534f4349455459',
+    decimals: 6,
   },
   "a00fdf4fb9ab6c8c2bd1533a2f14855edf12aed5ecbf96d4b5f5b9394334": {
     name: "Cardano Crocs Club",
@@ -37,6 +43,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Cardano Crocs Club.png",
     symbol: "$C4",
     value: "C4",
+    policyId: 'a00fdf4fb9ab6c8c2bd1533a2f14855edf12aed5ecbf96d4b5f5b939',
+    asset: '4334',
+    decimals: 0,
   },
   "772791eb3f4b92874a49d487375a90db631988291c1a643b817668ca4d616420446f6720546f6b656e": {
     name: "MD",
@@ -44,6 +53,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/MD.png",
     symbol: "$MD",
     value: "MD",
+    policyId: "772791eb3f4b92874a49d487375a90db631988291c1a643b817668ca",
+    asset: "4d616420446f6720546f6b656e",
+    decimals: 8
   },
   "27eee19588c997ca54d3137f64afe55a18dfcf9062fa83a724bf23574845584f4e49554d": {
     name: "Cardano Lands",
@@ -51,6 +63,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/hexo.png",
     symbol: "$HEXO",
     value: "HEXONIUM",
+    policyId: '27eee19588c997ca54d3137f64afe55a18dfcf9062fa83a724bf2357',
+    asset: '4845584f4e49554d',
+    decimals: 0,
   },
   "b0af30edf2c7f11465853821137e0a6ebc395cab71ee39c24127ffb44e465443": {
     name: "NFT Creative",
@@ -58,6 +73,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/NFT Creative.png",
     symbol: "$NFTC",
     value: "NFTC",
+    policyId: '27eee19588c997ca54d3137f64afe55a18dfcf9062fa83a724bf2357',
+    asset: '4845584f4e49554d',
+    decimals: 0,
   },
   "2c85a478d53f0e484b852c357e56057dfd8e80a6b72ecb4daffe42e544444f53": {
     name: "Degen Dino Orb Society",
@@ -65,6 +83,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/DDOS.png",
     symbol: "$DDOS",
     value: "DDOS",
+    policyId: '2c85a478d53f0e484b852c357e56057dfd8e80a6b72ecb4daffe42e5',
+    asset: '44444f53',
+    decimals: 0,
   },
   "38ad9dc3aec6a2f38e220142b9aa6ade63ebe71f65e7cc2b7d8a8535434c4159": {
     name: "Clay Nation",
@@ -72,6 +93,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/CLAY.png",
     symbol: "$CLAY",
     value: "CLAY",
+    policyId: '38ad9dc3aec6a2f38e220142b9aa6ade63ebe71f65e7cc2b7d8a8535',
+    asset: '434c4159',
+    decimals: 4,
   },
   "884892bcdc360bcef87d6b3f806e7f9cd5ac30d999d49970e7a903ae5041564941": {
     name: "Pavia",
@@ -79,6 +103,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/PAVIA.png",
     symbol: "$PAVIA",
     value: "PAVIA",
+    policyId: '884892bcdc360bcef87d6b3f806e7f9cd5ac30d999d49970e7a903ae',
+    asset: '5041564941',
+    decimals: 0,
   },
   "6954264b15bc92d6d592febeac84f14645e1ed46ca5ebb9acdb5c15f5354524950": {
     name: "Stripper Coin",
@@ -86,6 +113,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/STRIP.png",
     symbol: "$STRIP",
     value: "STRIP",
+    policyId: '6954264b15bc92d6d592febeac84f14645e1ed46ca5ebb9acdb5c15f',
+    asset: '5354524950',
+    decimals: 3,
   },
   "1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e776f726c646d6f62696c65746f6b656e": {
     name: "EarthNode",
@@ -93,6 +123,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/WMT.png",
     symbol: "$WMT",
     value: "WMT",
+    policyId: '1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e',
+    asset: '776f726c646d6f62696c65746f6b656e',
+    decimals: 6,
   },
   "8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a434841524c4933": {
     name: "Charli3",
@@ -100,6 +133,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/C3.png",
     symbol: "$C3",
     value: "C3",
+    policyId: '8e51398904a5d3fc129fbf4f1589701de23c7824d5c90fdb9490e15a',
+    asset: '434841524c4933',
+    decimals: 6,
   },
   "da8c30857834c6ae7203935b89278c532b3995245295456f993e1d244c51": {
     name: "Liqwid",
@@ -107,6 +143,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/LQ.png",
     symbol: "$LQ",
     value: "LQ",
+    policyId: 'da8c30857834c6ae7203935b89278c532b3995245295456f993e1d24',
+    asset: '4c51',
+    decimals: 6,
   },
   // "533bb94a8850ee3ccbe483106489399112b74c905342cb1792a797a0494e4459": {
   //   name: "Indigo Protocol",
@@ -121,6 +160,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/CARDS.png",
     symbol: "$CARDS",
     value: "CARDS",
+    policyId: '1fc21c9c7df3deca16d699b2d54cf5aa477576adc45f7c1340138a19',
+    asset: '4341524453',
+    decimals: 6,
   },
   "5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc928434894e4d4b52": {
     name: "NMKR",
@@ -128,6 +170,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/NMKR.png",
     symbol: "$NMKR",
     value: "NMKR",
+    policyId: '5dac8536653edc12f6f5e1045d8164b9f59998d3bdc300fc92843489',
+    asset: '4e4d4b52',
+    decimals: 6,
   },
   "10a49b996e2402269af553a8a96fb8eb90d79e9eca79e2b4223057b64745524f": {
     name: "Gero Wallet",
@@ -135,6 +180,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/GERO.png",
     symbol: "$GERO",
     value: "GERO",
+    policyId: '10a49b996e2402269af553a8a96fb8eb90d79e9eca79e2b4223057b6',
+    asset: '4745524f',
+    decimals: 6,
   },
   "c3675f5d7d013e2c192cdd12d1fe562f4c4f183d321b3a54638b513d54756974696f6e20436f696e": {
     name: "Tuition Coin",
@@ -142,6 +190,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/TUIT.png",
     symbol: "$TUIT",
     value: "TUIT",
+    policyId: 'c3675f5d7d013e2c192cdd12d1fe562f4c4f183d321b3a54638b513d',
+    asset: '54756974696f6e20436f696e',
+    decimals: 0,
   },
   "6ac8ef33b510ec004fe11585f7c5a9f0c07f0c23428ab4f29c1d7d104d454c44": {
     name: "MELD",
@@ -149,6 +200,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/MELD.png",
     symbol: "$MELD",
     value: "MELD",
+    policyId: '6ac8ef33b510ec004fe11585f7c5a9f0c07f0c23428ab4f29c1d7d10',
+    asset: '4d454c44',
+    decimals: 6,
   },
   "32cc9c6c3456bc048d14a4a8e4ee3592e9664e8daac921a8ef52d92a4752415353": {
     name: "GOAT TRIBE",
@@ -156,6 +210,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/GRASS.png",
     symbol: "$GRASS",
     value: "GRASS",
+    policyId: '32cc9c6c3456bc048d14a4a8e4ee3592e9664e8daac921a8ef52d92a',
+    asset: '4752415353',
+    decimals: 6,
   },
   "a0028f350aaabe0545fdcb56b039bfb08e4bb4d8c4d7c3c7d481c235484f534b59": {
     name: "Hosky Token",
@@ -163,6 +220,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/HOSKY.png",
     symbol: "$HOSKY",
     value: "HOSKY",
+    policyId: 'a0028f350aaabe0545fdcb56b039bfb08e4bb4d8c4d7c3c7d481c235',
+    asset: '484f534b59',
+    decimals: 0,
   },
   "5612bee388219c1b76fd527ed0fa5aa1d28652838bcab4ee4ee63197446973636f696e": {
     name: "DISCOIN",
@@ -170,6 +230,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/DISCO.png",
     symbol: "$DISCO",
     value: "DISCO",
+    policyId: '5612bee388219c1b76fd527ed0fa5aa1d28652838bcab4ee4ee63197',
+    asset: '446973636f696e',
+    decimals: 8,
   },
   "4623ab311b7d982d8d26fcbe1a9439ca56661aafcdcd8d8a0ef31fd6475245454e53": {
     name: "Greens Token",
@@ -177,6 +240,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/GREENS.png",
     symbol: "$GREENS",
     value: "GREENS",
+    policyId: '4623ab311b7d982d8d26fcbe1a9439ca56661aafcdcd8d8a0ef31fd6',
+    asset: '475245454e53',
+    decimals: 6,
   },
   "961f2cac0bb1967d74691af179350c1e1062c7298d1f7be1e4696e312444455250": {
     name: "Derp Birds",
@@ -184,6 +250,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/DERP.png",
     symbol: "$DERP",
     value: "DERP",
+    policyId: '961f2cac0bb1967d74691af179350c1e1062c7298d1f7be1e4696e31',
+    asset: '2444455250',
+    decimals: 0,
   },
   "078eafce5cd7edafdf63900edef2c1ea759e77f30ca81d6bbdeec92479756d6d69": {
     name: "Yummi",
@@ -191,6 +260,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/YUMMI.png",
     symbol: "$YUMMI",
     value: "YUMMI",
+    policyId: '078eafce5cd7edafdf63900edef2c1ea759e77f30ca81d6bbdeec924',
+    asset: '79756d6d69',
+    decimals: 0,
   },
   "279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b": {
     name: "Snek",
@@ -198,6 +270,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/SNEK.png",
     symbol: "$SNEK",
     value: "SNEK",
+    policyId: '279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f',
+    asset: '534e454b',
+    decimals: 0,
   },
   "07f019ce45fb638353258bda4316ce5eb3d0f76a3fb739c45174084953414c5459": {
     name: "Salty Seagulls Society",
@@ -205,6 +280,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Salty Seagulls .png",
     symbol: "$SALTY",
     value: "SALTY",
+    policyId: '07f019ce45fb638353258bda4316ce5eb3d0f76a3fb739c451740849',
+    asset: '53414c5459',
+    decimals: 6,
   },
   "29d222ce763455e3d7a09a665ce554f00ac89d2e99a1a83d267170c64d494e": {
     name: "Minswap",
@@ -212,6 +290,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Minswap.png",
     symbol: "$MIN",
     value: "MIN",
+    policyId: '29d222ce763455e3d7a09a665ce554f00ac89d2e99a1a83d267170c6',
+    asset: '4d494e',
+    decimals: 6,
   },
   "804f5544c1962a40546827cab750a88404dc7108c0f588b72964754f56594649": {
     name: "VYFI",
@@ -219,6 +300,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/VyFi.png",
     symbol: "$VYFI",
     value: "VYFI",
+    policyId: '804f5544c1962a40546827cab750a88404dc7108c0f588b72964754f',
+    asset: '56594649',
+    decimals: 6,
   },
   "2adf188218a66847024664f4f63939577627a56c090f679fe366c5ee535441424c45": {
     name: "Stablecoin",
@@ -226,6 +310,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Stable.png",
     symbol: "$STABLE",
     value: "STABLE",
+    policyId: '2adf188218a66847024664f4f63939577627a56c090f679fe366c5ee',
+    asset: '535441424c45',
+    decimals: 0,
   },
   "533bb94a8850ee3ccbe483106489399112b74c905342cb1792a797a0494e4459": {
     name: "Indigo DAO Token",
@@ -233,6 +320,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/INDY.png",
     symbol: "$INDY",
     value: "INDY",
+    policyId: '533bb94a8850ee3ccbe483106489399112b74c905342cb1792a797a0',
+    asset: '494e4459',
+    decimals: 6,
   },
   "75fcc276057db5fc48eae0e11453c773c8a54604c3086bf9d95ac1b743485259": {
     name: "CherryLend token",
@@ -240,6 +330,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/CHRY.png",
     symbol: "$CHRY",
     value: "CHRY",
+    policyId: '75fcc276057db5fc48eae0e11453c773c8a54604c3086bf9d95ac1b7',
+    asset: '43485259',
+    decimals: 6,
   },
   "f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc53541474958": {
     name: "SingularityNet AGIX Token",
@@ -247,6 +340,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/AGIX.png",
     symbol: "$AGIX",
     value: "AGIX",
+    policyId: 'f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc535',
+    asset: '41474958',
+    decimals: 8,
   },
   "8fef2d34078659493ce161a6c7fba4b56afefa8535296a5743f6958741414441": {
     name: "Aada DAO Token",
@@ -254,6 +350,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Aada DAO Token.png",
     symbol: "$AADA",
     value: "AADA",
+    policyId: '8fef2d34078659493ce161a6c7fba4b56afefa8535296a5743f69587',
+    asset: '41414441',
+    decimals: 6,
   },
   "8a1cfae21368b8bebbbed9800fec304e95cce39a2a57dc35e2e3ebaa4d494c4b": {
     name: "MILK",
@@ -261,6 +360,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Milk.png",
     symbol: "$MILK",
     value: "MILK",
+    policyId: '8a1cfae21368b8bebbbed9800fec304e95cce39a2a57dc35e2e3ebaa',
+    asset: '4d494c4b',
+    decimals: 0,
   },
   "9a9693a9a37912a5097918f97918d15240c92ab729a0b7c4aa144d7753554e444145": {
     name: "SUNDAE",
@@ -268,6 +370,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/sunadae swap.jpg",
     symbol: "$SUNDAE",
     value: "SUNDAE",
+    policyId: '9a9693a9a37912a5097918f97918d15240c92ab729a0b7c4aa144d77',
+    asset: '53554e444145',
+    decimals: 6,
   },
   "dda5fdb1002f7389b33e036b6afee82a8189becb6cba852e8b79b4fb0014df1047454e53": {
     name: "Genius Yield Token",
@@ -275,6 +380,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Genius Yield Token.jpeg",
     symbol: "$GENS",
     value: "GENS",
+    policyId: 'dda5fdb1002f7389b33e036b6afee82a8189becb6cba852e8b79b4fb',
+    asset: '0014df1047454e53',
+    decimals: 6,
   },
   "682fe60c9918842b3323c43b5144bc3d52a23bd2fb81345560d73f634e45574d": {
     name: "NEWM",
@@ -282,6 +390,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/NEWM.png",
     symbol: "$NEWM",
     value: "NEWM",
+    policyId: '682fe60c9918842b3323c43b5144bc3d52a23bd2fb81345560d73f63',
+    asset: '4e45574d',
+    decimals: 6,
   },
   "c0ee29a85b13209423b10447d3c2e6a50641a15c57770e27cb9d507357696e67526964657273": {
     name: "WingRiders Governance Token",
@@ -289,6 +400,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/WingRiders Governance Token.png",
     symbol: "$XRT",
     value: "XRT",
+    policyId: 'c0ee29a85b13209423b10447d3c2e6a50641a15c57770e27cb9d5073',
+    asset: '57696e67526964657273',
+    decimals: 6,
   },
   "86abe45be4d8fb2e8f28e8047d17d0ba5592f2a6c8c452fc88c2c14358524159": {
     name: "XRAY",
@@ -296,6 +410,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/XRAY.png",
     symbol: "$XRAY",
     value: "XRAY",
+    policyId: '86abe45be4d8fb2e8f28e8047d17d0ba5592f2a6c8c452fc88c2c143',
+    asset: '58524159',
+    decimals: 6,
   },
   "5d16cc1a177b5d9ba9cfa9793b07e60f1fb70fea1f8aef064415d114494147": {
     name: "IAGON",
@@ -303,6 +420,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/IAGON.png",
     symbol: "$IAG",
     value: "IAG",
+    policyId: '5d16cc1a177b5d9ba9cfa9793b07e60f1fb70fea1f8aef064415d114',
+    asset: '494147',
+    decimals: 6,
   },
   "6c8642400e8437f737eb86df0fc8a8437c760f48592b1ba8f5767e81456d706f7761": {
     name: "Empowa",
@@ -310,6 +430,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/EMP.png",
     symbol: "$EMP",
     value: "EMP",
+    policyId: '6c8642400e8437f737eb86df0fc8a8437c760f48592b1ba8f5767e81',
+    asset: '456d706f7761',
+    decimals: 6,
   },
   "0c78f619e54a5d00e143f66181a2c500d0c394b38a10e86cd1a23c5f41444158": {
     name: "ADAX",
@@ -317,6 +440,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/ADAX.jpeg",
     symbol: "$ADAX",
     value: "ADAX",
+    policyId: '0c78f619e54a5d00e143f66181a2c500d0c394b38a10e86cd1a23c5f',
+    asset: '41444158',
+    decimals: 0,
   },
   "df1d850c46d6c9d12cbf6181c35db9225a91b77c8a646b7f636f8ae40014df104e494e4a415a": {
     name: "Danketsu Token",
@@ -324,6 +450,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/NINJAZ.png",
     symbol: "$NINJAZ",
     value: "NINJAZ",
+    policyId: 'df1d850c46d6c9d12cbf6181c35db9225a91b77c8a646b7f636f8ae4',
+    asset: '0014df104e494e4a415a',
+    decimals: 6,
   },
   // "5612bee388219c1b76fd527ed0fa5aa1d28652838bcab4ee4ee63197446973636f696e": {
   //   name: "discoin",
@@ -338,6 +467,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/XDIAMOND.png",
     symbol: "$XDIAMOND",
     value: "XDIAMOND",
+    policyId: 'b6798a74fb7441ef5f7af1ff4ea6150bbb7aaeb0aca0113e558592f6',
+    asset: '584449414d4f4e44',
+    decimals: 0,
   },
   "a26022096c6a8052987dabbfa94849ab7886cf0bb7840044e017d5be4b756265436f696e": {
     name: "KubeCoin",
@@ -345,6 +477,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/KubeCoin.png",
     symbol: "$KUBE",
     value: "KUBE",
+    policyId: 'a26022096c6a8052987dabbfa94849ab7886cf0bb7840044e017d5be',
+    asset: '4b756265436f696e',
+    decimals: 6,
   },
   "94cbb4fcbcaa2975779f273b263eb3b5f24a9951e446d6dc4c13586452455655": {
     name: "Revuto",
@@ -352,13 +487,19 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/REVO.png",
     symbol: "$REVO",
     value: "REVO",
+    policyId: '94cbb4fcbcaa2975779f273b263eb3b5f24a9951e446d6dc4c135864',
+    asset: '52455655',
+    decimals: 8,
   },
-  "db30c7905f598ed0154de14f970de0f61f0cb3943ed82c891968480a434c4150": {
+  "db30c7905f598d0154dee14f970de0f61f0cb3943ed82c891968480a434c4150": {
     name: "CLAP",
     token: "Hexonium ($HEXO)",
     image: "/assets/images/tokens/CLAP.png",
     symbol: "$CLAP",
     value: "CLAP",
+    policyId: 'db30c7905f598ed0154de14f970de0f61f0cb3943ed82c891968480a',
+    asset: '434c4150',
+    decimals: 3,
   },
   "f66d78b4a3cb3d37afa0ec36461e51ecbde00f26c8f0a68f94b6988069555344": {
     name: "iUSD",
@@ -366,6 +507,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/iUSD.png",
     symbol: "$iUSD",
     value: "iUSD",
+    policyId: 'f66d78b4a3cb3d37afa0ec36461e51ecbde00f26c8f0a68f94b69880',
+    asset: '69555344',
+    decimals: 6,
   },
   "b6a7467ea1deb012808ef4e87b5ff371e85f7142d7b356a40d9b42a0436f726e75636f70696173205b76696120436861696e506f72742e696f5d": {
     name: "Cornucopias Token",
@@ -373,6 +517,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/Cornucopias Token.png",
     symbol: "$COPI",
     value: "COPI",
+    policyId: 'b6a7467ea1deb012808ef4e87b5ff371e85f7142d7b356a40d9b42a0',
+    asset: '436f726e75636f70696173205b76696120436861696e506f72742e696f5d',
+    decimals: 6,
   },
   "8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61446a65644d6963726f555344": {
     name: "DJED USD",
@@ -380,6 +527,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/DJED USD.png",
     symbol: "$DJED",
     value: "DJED",
+    policyId: '8db269c3ec630e06ae29f74bc39edd1f87c819f1056206e879a1cd61',
+    asset: '446a65644d6963726f555344',
+    decimals: 6,
   },
   "c50e06eb7d36ce67af2b15dd38228b59e39a5dae644166c84e3d2d1344554d42": {
     name: "DUMB",
@@ -387,6 +537,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/dumb.png",
     symbol: "$DUMB",
     value: "DUMB",
+    policyId: 'c50e06eb7d36ce67af2b15dd38228b59e39a5dae644166c84e3d2d13',
+    asset: '44554d42',
+    decimals: 0,
   },
   "8bccc55da00a21d93a332624e77964c0f49d6c64ea3ed44cfa718e795350494359": {
     name: "Spicy",
@@ -394,6 +547,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/spicy.png",
     symbol: "$SPICY",
     value: "SPICY",
+    policyId: '8bccc55da00a21d93a332624e77964c0f49d6c64ea3ed44cfa718e79',
+    asset: '5350494359',
+    decimals: 0,
   },
   "1ad4f068a49bbf0d4f05335cadeca0519cef34cc1b2bc35b2e5739ae434f434b": {
     name: "Cock",
@@ -401,6 +557,10 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/cock.png",
     symbol: "$COCK",
     value: "COCK",
+    policyId: '1ad4f068a49bbf0d4f05335cadeca0519cef34cc1b2bc35b2e5739ae',
+    asset: '434f434b',
+    decimals: 0,
+
   },
   "2b28c81dbba6d67e4b5a997c6be1212cba9d60d33f82444ab8b1f21842414e4b": {
     name: "Bank",
@@ -408,6 +568,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/bank.png",
     symbol: "$BANK",
     value: "BANK",
+    policyId: '2b28c81dbba6d67e4b5a997c6be1212cba9d60d33f82444ab8b1f218',
+    asset: '42414e4b',
+    decimals: 0,
   },
   "b201928d6bdb21c2e39205a92e226653d6002b949eaaacde3d986c2f": {
     name: "RON",
@@ -415,6 +578,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/ron.png",
     symbol: "$RON",
     value: "RON",
+    policyId: 'b201928d6bdb21c2e39205a92e226653d6002b949eaaacde3d986c2f',
+    asset: '524f4e',
+    decimals: 0,
   },
   "09f5f55fcad17503e6b7acc81de7c80f84b76e76d17085f0e32f1ce241574f4f": {
     name: "Unbothered Wolves",
@@ -422,6 +588,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/AWOO.svg",
     symbol: "$AWOO",
     value: "AWOO",
+    policyId: '09f5f55fcad17503e6b7acc81de7c80f84b76e76d17085f0e32f1ce2',
+    asset: '41574f4f',
+    decimals: 6,
   },
   "23690795536ccf407ed6eeac57db98db9668b3a026991fb516ecd7ef0014df10534d4f4b4553": {
     name: "ADA Inmates",
@@ -429,6 +598,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/SMOKES.svg",
     symbol: "$SMOKES",
     value: "SMOKES",
+    policyId: '23690795536ccf407ed6eeac57db98db9668b3a026991fb516ecd7ef',
+    asset: '0014df10534d4f4b4553',
+    decimals: 0,
   },
   "cf5d945ad03a11c46e70a85daa8598b2275f9442ceed1249754ad9a14e4154494f4e": {
     name: "Ape Nation",
@@ -436,6 +608,9 @@ export const TOKEN_ARRAY = {
     image: "/assets/images/tokens/NATION.svg",
     symbol: "$NATION",
     value: "NATION",
+    policyId: 'cf5d945ad03a11c46e70a85daa8598b2275f9442ceed1249754ad9a1',
+    asset: '4e4154494f4e',
+    decimals: 6,
   },
 }
 

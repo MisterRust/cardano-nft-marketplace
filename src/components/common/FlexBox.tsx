@@ -140,7 +140,8 @@ export const FlexBox = styled.div<FlexBoxStyleType>`
     padding-bottom: ${(props) => props.smPaddingBottom || '0px'};
     padding-top: ${(props) => props.smPaddingTop || '0px'};
     height: ${(props) => props.smHeight};
-    width: ${(props) => props.smWidth};
+    max-width: ${(props) => props.smWidth};
+    width: 100%;
     position: ${(props) => props.smPosition || ''};
     align-items: ${(props) => props.smAlignItems};
     padding: ${(props) => props.smPadding};

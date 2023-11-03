@@ -13,6 +13,7 @@ type CartContextType = {
     cartData: CartItem[];
     addToCart: (item: CartItem) => void;
     removeFromCart: (item: CartItem) => void;
+    removeAllCart: () => void;
 };
 
 // Create the CartContext with an initial value of an empty array and functions
@@ -20,6 +21,7 @@ const CartContext = createContext<CartContextType>({
     cartData: [],
     addToCart: () => { },
     removeFromCart: () => { },
+    removeAllCart: () => { },
 });
 
 // Define the cart reducer function
@@ -34,10 +36,22 @@ const cartReducer = (state: CartItem[], action: { type: string; payload: CartIte
             console.log("item", action.payload)
             console.log("state.filter((item) => item.utxo !== action.payload.utxo)", state.filter((item) => item.utxo !== action.payload.utxo))
             return state.filter((item) => item.utxo !== action.payload.utxo);
+
+        case "REMOVE_ALL":
+            return [];
         // Add other cases for cart manipulation as needed
         default:
             return state;
     }
+};
+
+const placeholderCartItem: CartItem = {
+    id: -1,
+    name: "",
+    price: 0,
+    amount: "",
+    nfts: [],
+    utxo: "",
 };
 
 // Create a CartProvider component to wrap your app
@@ -61,9 +75,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const removeFromCart = (item: CartItem) => {
         dispatch({ type: "REMOVE_FROM_CART", payload: item });
     };
+    // Add the removeAllCart function
+    const removeAllCart = () => {
+        dispatch({ type: "REMOVE_ALL", payload: placeholderCartItem  }); // Provide an empty object as the payload
+    };
 
     return (
-        <CartContext.Provider value={{ cartData, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartData, addToCart, removeFromCart, removeAllCart }}>
             {children}
         </CartContext.Provider>
     );

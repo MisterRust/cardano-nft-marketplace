@@ -111,6 +111,9 @@ export const GlobalStyles = createGlobalStyle`
       outline: none;
     }
   }
+  strong{
+    color: #f73737;
+  }
 
   .point{
     color: red;
@@ -234,7 +237,7 @@ export const Container = styled.div<ContainerType>`
   background-color: ${(props) => props.bgColor && props.bgColor};
   width: 100%;
   @media screen and (max-width: 768px) {
-    padding-top: ${(props) => props.smPaddingTop || '0px'};
+    padding-top: ${(props) => props.smPaddingTop || '32px'};
     padding-bottom: ${(props) => props.smPaddingBottom || '50px'};
     padding-left: ${(props) => props.smPaddingLeft };
     padding-right: ${(props) => props.smPaddingRight };
@@ -249,8 +252,9 @@ export const PageWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 692px;
+  padding-bottom: 742px;
   display: block !important;
+
   background: var(--red-grey, linear-gradient(180deg, #E7E7E7 0%, #E7E7E7 48.23%, rgba(247, 55, 55, 0.72) 96.4%));
 `
 
@@ -271,3 +275,5 @@ export const CustomDatePicker = styled(DatePicker)`
     padding: 0px 0px 20px 0px;
   }
 `
+
+

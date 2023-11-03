@@ -61,7 +61,7 @@ const Footer = memo(
                   alignSelf='flex-end'
                 >
                   <CustomText
-                    text={`Providing the tools on the Cardano Blockchain beginning with On-Chain Voting and Raffles.`}
+                    text={`Revolutionizing web3 commerce and redefining what it means to be a marketplace.`}
                     fontFamily='Open Sans'
                     fontSize='16px'
                     fontWeight='400'

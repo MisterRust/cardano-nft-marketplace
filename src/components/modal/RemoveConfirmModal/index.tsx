@@ -13,7 +13,6 @@ import { H3, H8 } from 'components/typography';
 import { getExactImageFormat } from 'hooks/function';
 import CustomInput from 'components/common/CustomInput';
 import { useState } from 'react';
-import { listNFTByAddress } from 'api/marketplace';
 import { useWalletConnect } from 'context/WalletConnect';
 import { COLLECTION_DATA } from 'constants/document';
 

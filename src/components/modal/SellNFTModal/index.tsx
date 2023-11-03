@@ -3,8 +3,6 @@ import { Modal } from 'react-bootstrap';
 
 import CustomImage from 'components/common/CustomImage';
 import { LINK_ICON, SUCCESS_ICON, VERIFIED_ICON_IMAGE } from 'constants/image.constants';
-import CustomBorderButton from 'components/common/CustomBorderButton';
-import CustomLinkButton from 'components/common/CustomLinkButton';
 import { device } from 'styles/Breakpoints';
 import { FlexBox } from 'components/common/FlexBox';
 import CustomButton from 'components/common/CustomButton';
@@ -13,7 +11,6 @@ import { H3, H8 } from 'components/typography';
 import { getExactImageFormat } from 'hooks/function';
 import CustomInput from 'components/common/CustomInput';
 import { useEffect, useState } from 'react';
-import { listNFTByAddress } from 'api/marketplace';
 import { useWalletConnect } from 'context/WalletConnect';
 import { COLLECTION_DATA } from 'constants/document';
 

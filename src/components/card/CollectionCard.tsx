@@ -1,8 +1,6 @@
 import CustomImage from 'components/common/CustomImage'
-import CustomText from 'components/common/CustomText'
 import { FlexBox } from 'components/common/FlexBox'
 import { VERIFIED_ICON_IMAGE } from 'constants/image.constants'
-import { getCollectionID } from 'hooks/function'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -37,10 +35,11 @@ const CollectionName = styled.div`
   -webkit-box-orient: vertical;  
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 236px;
-  font-size: 21px;
+  max-width: 180px;
+  font-size: 16px;
+  line-height: 100%;
   font-weight: 700;
-
+  font-family: Inconsolata;
   @media screen and (max-width: 768px) {
     display: flex;
     -webkit-line-clamp: 1;
@@ -66,15 +65,16 @@ const CollectionCard = ({
         smHeight='156px'
       />
       <FlexBox
-        padding='12px 10px'
+        padding='12px 24px'
         gap='6px'
-        smDirection='row'
         bgColor='white'
         borderRadius='0px 0px 3px 3px'
         maxWidth='256px'
-        height='79px'
+        height='58px'
         alignItems='center'
+        smDirection='row'
         smHeight='41px'
+        smPadding='12px 10px'
       >
         <CollectionName>
           {name}

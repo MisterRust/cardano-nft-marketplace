@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Container, PageWrapper } from 'styles/GlobalStyles'
+import { Container,  PageWrapper } from 'styles/GlobalStyles'
 import styled from 'styled-components'
 import { FlexBox } from 'components/common/FlexBox'
 import CustomText from 'components/common/CustomText'
 import CustomImage from 'components/common/CustomImage'
-import { DEFAULT_WALLET_NFT_IMAGE, } from 'constants/image.constants'
+import { DEFAULT_NFT_IMAGE, DEFAULT_WALLET_NFT_IMAGE, QUESTION_ICON, } from 'constants/image.constants'
 import MyNFTs from './MyNFTs'
 import MyTokens from './MyTokens'
 import MyActivity from './MyActivity'
@@ -14,6 +14,9 @@ import CopyBoard from 'components/CopyBoard'
 import { useGlobalContext } from 'context/GlobalContext'
 import { useWalletConnect } from 'context/WalletConnect'
 import { useMedia } from 'react-use'
+import { JPGAssetsNote, JPGAssetsNoteHover, Question_Image } from './index.styled'
+import SuccessModal from 'components/modal/SuccessModal'
+import { Tooltip, OverlayTrigger } from 'react-bootstrap'
 
 const ProfileHeaderBanner = styled.div`
   background-image: url('/assets/images/background/my_profile_header.png');
@@ -52,13 +55,22 @@ const ProfileTab = styled.div<ProfileTabProps>`
 
 const MyProfile = () => {
   const [activeTab, setActiveTab] = useState<string>('NFTs');
+
+  const [isHovered, setIsHovered] = useState(false);
   const { myBalance, userData } = useGlobalContext()
   const { myWalletAddress } = useWalletConnect()
   const isMobile = useMedia('(max-width: 768px)');
+
+
+  const tooltip = (
+    <JPGAssetsNoteHover>
+      The “migrate” button below allows you to import listings from other platforms onto the Crashr marketplace!
+    </JPGAssetsNoteHover>
+  );
   return (
     <PageWrapper>
       <ProfileHeaderBanner />
-      <Container smPaddingBottom='0px'>
+      <Container smPaddingBottom='30px'>
         {
           !isMobile &&
           <FlexBox marginBottom='69px' position='relative' justifyContent='space-around' paddingTop='27px'>
@@ -121,7 +133,8 @@ const MyProfile = () => {
             </FlexBox>
             <FlexBox width='376px' direction='column' alignItems='center' justifyContent='center' position='absolute' marginTop='-220px'>
               <CustomImage
-                image={DEFAULT_WALLET_NFT_IMAGE}
+                image={userData && userData?.avatar ? userData?.avatar : DEFAULT_NFT_IMAGE}
+                borderRadius='3px'
                 width='253px'
                 height='253px'
               />
@@ -259,7 +272,7 @@ const MyProfile = () => {
                   text={`Wallet Address`}
                   fontFamily='Open Sans'
                 />
-                
+
                 <CopyBoard
                   addr={
                     myWalletAddress && myWalletAddress
@@ -267,24 +280,49 @@ const MyProfile = () => {
                   maxWidth='100px'
                 />
               </FlexBox>
-
-
             </FlexBox>
           </>
-
         }
         <FlexBox gap="40px" padding='14px' borderBottom='2px solid #8D8D8D' width='fit-content' className='mx-auto' marginBottom='32px' smDirection='row' smWidth='100%' smGap='0px' smPaddingBottom='8px' smMarginBottom='16px' smMarginTop='33px'>
           {
             tabs.map((tab: string, index: number) => {
               return (
-                <ProfileTab active={tab === activeTab} onClick={() => { setActiveTab(tab) }}>
+                <ProfileTab key = {index} active={tab === activeTab} onClick={() => { setActiveTab(tab) }}>
                   {tab}
                 </ProfileTab>
               )
             })
           }
         </FlexBox>
+        {
+          activeTab === "NFTs" &&
+          <JPGAssetsNote>
+            <div className='topic'>
+              Have assets listed elsewhere?
+            </div>
+            <div className='content'>
+              Migrate assets to Crashr!
+
+
+              <OverlayTrigger placement="bottom" overlay={tooltip}>
+                <span className='d-flex align-items-center'>
+                  <CustomImage
+                    image={QUESTION_ICON}
+                    alt="img-question"
+                    width='24px'
+                    height='24px'
+                  />
+                  &nbsp;&nbsp;&nbsp;
+                </span>
+              </OverlayTrigger>
+            </div>
+
+
+          </JPGAssetsNote>
+        }
+
       </Container>
+
       <Container>
         {
           activeTab === "NFTs" &&

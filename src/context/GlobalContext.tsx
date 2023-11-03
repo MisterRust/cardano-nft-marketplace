@@ -251,7 +251,7 @@ export const GlobalProvider = ({ children }: PropsWithChildren) => {
         setWinRaffles(newObj)
       }
     } catch (err) {
-      console.log("err");
+      console.log("Error getWinRaffles", err);
     }
   }
 
@@ -397,7 +397,6 @@ export const GlobalProvider = ({ children }: PropsWithChildren) => {
     getFloorPriceList();
     getActiveVoting();
     getWinRaffles();
-    getAllNFTListing()
 
     // subsequent calls every 60 seconds
     // const intervalId = setInterval(() => {

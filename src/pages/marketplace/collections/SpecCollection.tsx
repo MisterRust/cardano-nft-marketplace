@@ -13,19 +13,16 @@ import NFTsInfo from './components/NFTsInfo'
 import SalesInfo from './components/SalesInfo'
 import VERIFIED_COLLECTIONS from 'constants/verified.collections.constant'
 import BlackHeaderBanner from 'components/BlackHeaderBanner'
-import axios from 'axios'
 import { getListedNFTsByPolicy } from 'api/marketplace'
 import { useMedia } from 'react-use'
 
 const tabData = ["NFTs", "Sales"]
 
-
-
-interface LeaderboardTabProps {
+interface NFTSalesTabProps {
   active: boolean;
 }
 
-const LeaderboardTab = styled.div<LeaderboardTabProps>`
+const NFTSalesTab = styled.div<NFTSalesTabProps>`
   cursor: pointer;
   background-color: ${props => props.active ? '#AFB9FA' : 'none'};
   color: black;
@@ -38,7 +35,12 @@ const LeaderboardTab = styled.div<LeaderboardTabProps>`
   width: 149px;
   height: 36px;
   border-radius: 3px;
+  @media screen and (max-width: 768px) {
+    width: 50%;
+    height: 28px;
+  }
 `
+
 
 const SpecCollection = () => {
   const [collectionData, setCollectionData] = useState<CollectionType>()
@@ -89,7 +91,9 @@ const SpecCollection = () => {
 
   return (
     <PageWrapper>
-      <BlackHeaderBanner />
+      <BlackHeaderBanner
+        smHeight='132px'
+      />
       <Container>
         <CustomImage
           position='absolute' marginTop='-147px'
@@ -101,7 +105,7 @@ const SpecCollection = () => {
           smWidth='114px'
           smHeight='114px'
         />
-        <FlexBox direction='column' gap='32px' paddingTop='70px' smPaddingTop='65px'>
+        <FlexBox direction='column' paddingTop='68px' smPaddingTop='65px'>
           <FlexBox justifyContent='space-between'>
             <FlexBox
               gap='16px'
@@ -109,6 +113,7 @@ const SpecCollection = () => {
               alignItems='center'
               width='default'
               smDirection='row'
+              smJustifyContent='start'
             >
               <H2>
                 {
@@ -119,37 +124,42 @@ const SpecCollection = () => {
               <CustomImage
                 width='40px'
                 height='38px'
+                smWidth='26px'
+                smHeight='24px'
                 image={VERIFIED_ICON_IMAGE}
               />
 
             </FlexBox>
-            <FlexBox
-              width='default'
-              smDirection='row'
-              alignItems='center'
-              gap="28px"
-            >
-              {
-                collectionData && collectionData.policyId &&
-                <FlexBox alignItems='center' smDirection='row' width='default'>
-                  <CustomText
-                    text={`Policy ID:&nbsp;`}
-                    fontFamily='Open Sans'
-                    fontSize='21px'
-                    fontWeight='700'
-                    color='#6073f6'
-                    className='text-nowrap'
-                    smFontSize='14px'
-                    smMaxWidth='179px'
-                  />
-                  <CopyBoard
-                    addr={collectionData.policyId}
-                    maxWidth='200px'
-                  />
-                </FlexBox>
-              }
+            {
+              !isMobile &&
+              <FlexBox
+                width='default'
+                smDirection='row'
+                alignItems='center'
+                gap="28px"
+              >
+                {
+                  collectionData && collectionData.policyId &&
+                  <FlexBox alignItems='center' smDirection='row' width='default'>
+                    <CustomText
+                      text={`Policy ID:&nbsp;`}
+                      fontFamily='Open Sans'
+                      fontSize='21px'
+                      fontWeight='700'
+                      color='#6073f6'
+                      className='text-nowrap'
+                      smFontSize='14px'
+                      smMaxWidth='179px'
+                    />
+                    <CopyBoard
+                      addr={collectionData.policyId}
+                      maxWidth='200px'
+                    />
+                  </FlexBox>
+                }
 
-            </FlexBox>
+              </FlexBox>
+            }
           </FlexBox>
           {
             collectionData &&
@@ -159,15 +169,38 @@ const SpecCollection = () => {
               fontSize='16px'
               fontWeight='400'
               fontFamily='Open Sans'
+              marginTop='12px'
+              marginBottom='21px'
               smFontSize='14px'
+              smMarginBottom='16px'
             />
           }
           {
-            collectionData && <SpecCollectionStats
+            collectionData &&
+            <SpecCollectionStats
               items={collectionData && collectionData.supply}
             />
           }
-          <FlexBox smDirection='row' gap="20px" justifyContent='start'>
+          {
+            isMobile &&
+            <FlexBox alignItems='center' smDirection='row' width='default' smMarginTop='16.5px' smPaddingLeft='16px'>
+              <CustomText
+                text={`Policy ID:&nbsp;`}
+                fontFamily='Open Sans'
+                fontSize='21px'
+                fontWeight='700'
+                color='#6073f6'
+                className='text-nowrap'
+                smFontSize='14px'
+                smMaxWidth='179px'
+              />
+              <CopyBoard
+                addr={collectionData && collectionData.policyId}
+                maxWidth='200px'
+              />
+            </FlexBox>
+          }
+          <FlexBox marginTop='21px' smDirection='row' gap="20px" justifyContent='start'>
             {
               activeTab === "NFTs" && !isMobile &&
               <>
@@ -199,6 +232,7 @@ const SpecCollection = () => {
               smGap='16px'
               justifyContent='start'
               gap='20px'
+              marginBottom='32px'
             >
               <FlexBox
                 smDirection='row' justifyContent='start'
@@ -212,12 +246,12 @@ const SpecCollection = () => {
                 {
                   tabData.map((tab, j) => {
                     return (
-                      <LeaderboardTab
+                      <NFTSalesTab
                         active={tab === activeTab}
                         onClick={() => setActiveTab(tab)}
                       >
                         {tab}
-                      </LeaderboardTab>
+                      </NFTSalesTab>
                     )
 
                   })
@@ -267,6 +301,7 @@ const SpecCollection = () => {
               setIsFilter={setIsFilter}
               commonNFTs={commonNFTs}
               listedNFTs={listedNFTs}
+              search = {search}
             />
           }
           {

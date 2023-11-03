@@ -11,6 +11,7 @@ import { TopCollectionRow, CollectionTableHeader, TimeTab, TopCollectionBody } f
 import { useMedia } from 'react-use';
 import { ThreeDots } from 'react-loader-spinner'
 import CustomImage from 'components/common/CustomImage';
+
 const tabs = [
   {
     value: "24h",
@@ -57,8 +58,6 @@ const TopCollections = () => {
         setLoading(false)
         setCollectionData(data.ranking)
       }
-
-
     } catch (err) {
       setLoading(false)
       console.log("Error getCollectionData", err);

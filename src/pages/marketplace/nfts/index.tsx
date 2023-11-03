@@ -8,7 +8,7 @@ import { FlexBox } from 'components/common/FlexBox'
 import { H2 } from 'components/typography'
 import { BLACK_DOWN_ICON, BLACK_UP_ICON, DOWN_FILTER_ICON_IMAGE, MARKETPLACE_HEADER_IMAGE, UP_FILTER_ICON_IMAGE } from 'constants/image.constants'
 import { useGlobalContext } from 'context/GlobalContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMedia } from 'react-use'
 import { Container, PageWrapper } from 'styles/GlobalStyles'
 const filterCategories = {
@@ -33,20 +33,50 @@ const filterCategories = {
     "Lorem Ipsum",
     "Lorem Ipsum",
   ],
+  "Gaming": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Membership": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Photography": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Fashion": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ]
 }
 
 
 
 const AllNFTs = () => {
   const [isFilter, setIsFilter] = useState<boolean>(false)
+  const [displayNFTs, setDisplayNFTs] = useState<ListedNFTList>()
   const [subFiltersOpen, setSubFiltersOpen] = useState<boolean[]>(
     [false, false, false]
   )
   const [search, setSearch] = useState<string>('');
   const [search2, setSearch2] = useState<string>('');
-  const { listedAllNFTs } = useGlobalContext()
+  const { listedAllNFTs } = useGlobalContext();
 
   const isMobile = useMedia('(max-width: 768px)');
+
+  useEffect(() => {
+
+  }, [listedAllNFTs, search])
 
   return (
     <PageWrapper>
@@ -86,7 +116,7 @@ const AllNFTs = () => {
             <CustomSearchInput
               input={search}
               setInput={setSearch}
-              placeholder='Search Collections'
+              placeholder='Search NFTs'
             />
             {
               isMobile &&
@@ -131,7 +161,7 @@ const AllNFTs = () => {
                 <CustomSearchInput
                   input={search2}
                   setInput={setSearch2}
-                  placeholder='Search properties'
+                  placeholder='Search Collection'
                   bgColor='#E7E7E7'
                 />
                 <FlexBox marginTop='24px' direction='column'>
@@ -221,6 +251,7 @@ const AllNFTs = () => {
                 gap={`52px ${isFilter ? '70px' : '90px'}`}
                 justifyContent='center'
                 alignItems='center'
+                smDirection='row'
                 smJustifyContent='center'
                 smAlignItems='center'
                 smGap='22px'
@@ -234,6 +265,7 @@ const AllNFTs = () => {
                         isBundle={isBundle}
                         isListed={true}
                         data={nft}
+                        search={search}
 
                       />
                     );

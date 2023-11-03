@@ -246,6 +246,7 @@ interface MarketListedNFTCardType{
   isBundle: boolean;
   isListed: boolean;
   // onClick: () => void;
+  search?: string;
 }
 
 interface CollectionType {

@@ -1,4 +1,4 @@
-import { cancelNFT, editListedNFT, getMyNFTListing, listNFTByAddress } from 'api/marketplace'
+import { getMyNFTListing } from 'api/marketplace'
 import MyListedNFTCard from 'components/card/MyListedNFTCard'
 import NFTCard from 'components/card/NFTCard'
 import CustomButton from 'components/common/CustomButton'
@@ -10,7 +10,7 @@ import { FlexBox } from 'components/common/FlexBox'
 import SellNFTBundleModal from 'components/modal/SellNFTBundleModal'
 import SellNFTModal from 'components/modal/SellNFTModal'
 import SuccessModal from 'components/modal/SuccessModal'
-import { BLACK_DOWN_ICON, BLACK_UP_ICON, DOWN_FILTER_ICON_IMAGE, UP_FILTER_ICON_IMAGE } from 'constants/image.constants'
+import { BLACK_DOWN_ICON, BLACK_UP_ICON, DEFAULT_NFT_IMAGE, DOWN_FILTER_ICON_IMAGE, UP_FILTER_ICON_IMAGE } from 'constants/image.constants'
 import { useGlobalContext } from 'context/GlobalContext'
 import { useWalletConnect } from 'context/WalletConnect'
 import { infoAlert } from 'hooks/alert'
@@ -21,7 +21,12 @@ import EditListingModal from 'components/modal/EditListingModal'
 import { useMedia } from 'react-use'
 import { getMyListedNFTsFromJPGStore } from 'api/marketplace/getMyListedNFTsFromJPGStore'
 import MyJpgStoreNFTCard from 'components/card/MyJpgStoreNFTCard'
-
+import MigrateListingModal from 'components/modal/MigrateListingModal'
+import { migrateAssets } from 'api/marketplace/migrateAssets'
+import { editListedNFT } from 'api/marketplace/editListedNFT'
+import { listNFTByAddress } from 'api/marketplace/listNFT'
+import { cancelNFT } from 'api/marketplace/cancelNFT'
+import { NFTFlex } from './index.styled'
 const filterCategories = {
   "Rewards": [
     "Lorem Ipsum",
@@ -44,6 +49,31 @@ const filterCategories = {
     "Lorem Ipsum",
     "Lorem Ipsum",
   ],
+  "Gaming": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Membership": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Photography": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ],
+  "Fashion": [
+    "Lorem Ipsum",
+    "Lorem Ipsum",
+  ]
 }
 
 const MyNFTs = () => {
@@ -57,6 +87,7 @@ const MyNFTs = () => {
   const [showSellModal, setShowSellModal] = useState(false)
   const [activeSelectNFT, setActiveSelectNFT] = useState<NFTDataProps>()
   const [activeEditData, setActiveEditData] = useState()
+  const [activeMigratingData, setActiveMigratingData] = useState()
   const [subFiltersOpen, setSubFiltersOpen] = useState<boolean[]>(
     [false, false, false]
   )
@@ -68,16 +99,19 @@ const MyNFTs = () => {
   const [showRemoveListingModal, setShowRemoveListingModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false)
   const [showRemoveBundleModal, setShowRemoveBundleModal] = useState(false)
+  const [showMigratingModal, setShowMigratingModal] = useState(false)
+  const [showMigrateSuccessModal, setShowMigrateSuccessModal] = useState(false)
   const [myJPGStoreData, setMyJPGStoreData] = useState<any>()
   const { myNFTs, setMyNFTs } = useGlobalContext()
+  console.log("myNFTs", myNFTs)
   const { myWalletAddress, lucid } = useWalletConnect()
 
   const isMobile = useMedia('(max-width: 768px)');
 
-  // const getJpgStoreListedData = async () => {
-  //   const jpgStoreListedData = await getMyListedNFTsFromJPGStore(myWalletAddress)
-  //   setMyJPGStoreData(jpgStoreListedData)
-  // }
+  const getJpgStoreListedData = async () => {
+    const jpgStoreListedData = await getMyListedNFTsFromJPGStore(myWalletAddress)
+    setMyJPGStoreData(jpgStoreListedData)
+  }
 
   // get my listed nft data
   const getListedData = async () => {
@@ -154,6 +188,15 @@ const MyNFTs = () => {
     setMyNFTs(updatedData)
   }
 
+  const migrateNFT = async (utxo: string, assets: [], price: number) => {
+    console.log("assets", assets, utxo, price)
+    const result = await migrateAssets(myWalletAddress, lucid, utxo.replace(/#0$/, ''), assets, price)
+    if (result) {
+      setShowMigrateSuccessModal(true)
+    }
+
+  }
+
   useEffect(() => {
     if (isChecked) {
       selectFirst10NFTs()
@@ -180,39 +223,67 @@ const MyNFTs = () => {
     // call getListedData if myWalletAddress is set
     if (myWalletAddress) {
       getListedData();
-      // getJpgStoreListedData();
+      getJpgStoreListedData();
     }
   }, [myWalletAddress]);
 
   return (
     <>
-      <FlexBox marginBottom='32px' smDirection='row' gap="20px" justifyContent='start'>
+      <FlexBox smDirection='row' gap="20px" justifyContent='start' marginBottom='32px' smMarginBottom='0px'>
         {
-          isFilter
-            ?
-            <CustomImage
-              image={UP_FILTER_ICON_IMAGE}
-              width='40px'
-              height='40px'
-              onClick={() => setIsFilter(false)}
-              cursor='pointer'
-            />
-            :
-            <CustomImage
-              image={DOWN_FILTER_ICON_IMAGE}
-              width='40px'
-              height='40px'
-              onClick={() => setIsFilter(true)}
-              cursor='pointer'
-            />
+          !isMobile &&
+          <>
+            {
+              isFilter
+                ?
+                <CustomImage
+                  image={UP_FILTER_ICON_IMAGE}
+                  width='40px'
+                  height='40px'
+                  onClick={() => setIsFilter(false)}
+                  cursor='pointer'
+                />
+                :
+                <CustomImage
+                  image={DOWN_FILTER_ICON_IMAGE}
+                  width='40px'
+                  height='40px'
+                  onClick={() => setIsFilter(true)}
+                  cursor='pointer'
+                />
+            }
+          </>
         }
         <CustomSearchInput
           input={search}
           setInput={setSearch}
-          placeholder='Search NFTs'
+          placeholder='Search Collections'
         />
+        {
+          isMobile &&
+          <>
+            {
+              isFilter
+                ?
+                <CustomImage
+                  image={UP_FILTER_ICON_IMAGE}
+                  width='40px'
+                  height='40px'
+                  onClick={() => setIsFilter(false)}
+                  cursor='pointer'
+                />
+                :
+                <CustomImage
+                  image={DOWN_FILTER_ICON_IMAGE}
+                  width='40px'
+                  height='40px'
+                  onClick={() => setIsFilter(true)}
+                  cursor='pointer'
+                />
+            }
+          </>
+        }
       </FlexBox>
-
       <FlexBox gap="20px">
         {
           isFilter &&
@@ -354,14 +425,9 @@ const MyNFTs = () => {
               </FlexBox>
             </>
           }
-          <FlexBox
-            marginTop='32px'
-            flexWrap='wrap'
-            gap={`${isFilter ? '52px 70px' : '52px 98px'}`}
-            justifyContent='start'
-            smJustifyContent='center'
-            smAlignItems='center'
-          >
+          <NFTFlex>
+            
+            
             {
               myListedData && Object.values(myListedData).length > 0 && Object.values(myListedData).map((nft, index) => {
                 const isBundle = Object.values(nft.nfts).length > 1 ? true : false;
@@ -386,10 +452,13 @@ const MyNFTs = () => {
                   <MyJpgStoreNFTCard
                     key={j}
                     data={item}
+                    setActiveMigratingData={setActiveMigratingData}
+                    setShowMigratingModal={setShowMigratingModal}
                   />
                 )
               })
             }
+
             {
               activeShowingData && activeShowingData.length > 0 &&
               activeShowingData.map((nft: NFTDataProps, j) => {
@@ -417,8 +486,7 @@ const MyNFTs = () => {
                   />
                 );
               })}
-
-          </FlexBox>
+          </NFTFlex>
         </FlexBox>
       </FlexBox>
       {
@@ -442,6 +510,13 @@ const MyNFTs = () => {
           nftData={selectedNFTs}
           submitSellNFT={submitSellNFT}
         />
+      }
+      {
+        showMigrateSuccessModal &&
+        <SuccessModal
+          show={showMigrateSuccessModal}
+          onClose={() => { setShowMigrateSuccessModal(false) }}
+          message='You have successfully migrated your asset.' />
       }
       {
         showSellSuccessModal &&
@@ -477,6 +552,17 @@ const MyNFTs = () => {
           editNFT={editNFT}
           activeEditData={activeEditData}
         />
+      }
+      {
+        showMigratingModal &&
+        <MigrateListingModal
+          show={showMigratingModal}
+          onClose={() => { setShowMigratingModal(false) }}
+          migrateNFT={migrateNFT}
+          activeMigratingData={activeMigratingData}
+
+        />
+
       }
     </>
   )

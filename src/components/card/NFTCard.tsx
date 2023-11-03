@@ -1,10 +1,22 @@
-import CustomButton from 'components/common/CustomButton'
-import CustomImage from 'components/common/CustomImage'
-import CustomText from 'components/common/CustomText'
-import { FlexBox } from 'components/common/FlexBox'
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
+// Import your custom components as needed
+import CustomButton from 'components/common/CustomButton';
+import CustomImage from 'components/common/CustomImage';
+import CustomText from 'components/common/CustomText';
+import { FlexBox } from 'components/common/FlexBox';
+
+// Define the component's props interface
+interface NFTCardType {
+  image: string;
+  onClick: () => void;
+  name: string;
+  isSelected: boolean;
+  setSelect: () => void;
+}
+
+// Define the styled component for the NFTCard
 interface NFTCardStyleProps {
   isSelected: boolean;
 }
@@ -14,8 +26,11 @@ const NFTCardStyle = styled.div<NFTCardStyleProps>`
   border-radius: 3px;
   max-width: 256px;
   width: 100%;
-  outline: ${props => props.isSelected && '6px solid #6073F6'}
-`
+  outline: ${props => props.isSelected ? '6px solid #6073F6' : 'none'};
+  @media screen and (max-width: 768px) {
+    max-width: 156px;
+  }
+`;
 
 const NFTCard = ({
   image,
@@ -26,13 +41,14 @@ const NFTCard = ({
 }: NFTCardType) => {
   return (
     <NFTCardStyle isSelected={isSelected}>
-
       <FlexBox direction='column' onClick={setSelect} cursor='pointer'>
         <CustomImage
           image={image}
           width='256px'
           height='256px'
           borderRadius='3px 3px 0px 0px'
+          smWidth='156px'
+          smHeight='156px'
         />
         <FlexBox
           bgColor='white'
@@ -43,6 +59,8 @@ const NFTCard = ({
           gap='4px'
           width='256px'
           height='79px'
+          smWidth='156px'
+          smHeight='59px'
         >
           <CustomText
             text={name}
@@ -51,11 +69,12 @@ const NFTCard = ({
             maxWidth='236px'
             className='three-dots'
             display='block'
+            smFontSize='16px'
+            smMaxWidth='139px'
           />
         </FlexBox>
       </FlexBox>
-      {
-        !isSelected &&
+      {!isSelected && (
         <CustomButton
           text='Sell NFT'
           fontSize='18px'
@@ -67,10 +86,9 @@ const NFTCard = ({
           onClick={onClick}
           smWidth='100%'
         />
-      }
-
+      )}
     </NFTCardStyle>
-  )
+  );
 }
 
-export default NFTCard
+export default NFTCard;

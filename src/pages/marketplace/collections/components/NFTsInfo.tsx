@@ -36,13 +36,15 @@ interface NFTsInfoProps {
   setIsFilter?: any;
   commonNFTs?: any;
   listedNFTs?: ListedNFTList;
+  search?: string;
 }
 
 const NFTsInfo = ({
   isFilter,
   setIsFilter,
   commonNFTs,
-  listedNFTs
+  listedNFTs,
+  search
 }: NFTsInfoProps) => {
   const [search2, setSearch2] = useState<string>('');
   const [subFiltersOpen, setSubFiltersOpen] = useState<boolean[]>(
@@ -158,6 +160,7 @@ const NFTsInfo = ({
           flexWrap='wrap'
           gap={isFilter ? '52px 70px' : '52px 98px'}
           justifyContent='start'
+          smDirection='row'
           smJustifyContent='center'
           smAlignItems='center'
           smGap='30.5px'
@@ -171,6 +174,7 @@ const NFTsInfo = ({
                   isBundle={isBundle}
                   isListed={true}
                   data={nft}
+                  search={search}
 
                 />
               );

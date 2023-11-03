@@ -7,9 +7,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { H2, H7 } from 'components/typography';
 import SelectCurrencyBox from 'components/select/SelectCurrencyBox';
 import SelectNFTBox from 'components/select/SelectNFTBox';
-
-
-
 import { getExactImageFormat, outputEndTimeRemaining } from 'hooks/function';
 import CustomBorderButton from 'components/common/CustomBorderButton';
 import CustomImage from 'components/common/CustomImage';
@@ -444,7 +441,7 @@ const CreateRaffleModal = ({ show, onClose, formData, setFormData, submit }: Pro
                   />
                 </FlexBox>
                 <CustomText
-                  text={`Doggo ipsum waggy wags doge big ol shoober extremely cuuuuuute very good spot long woofer heckin, b  tho t  frighten floofs.`}
+                  text={formData.description}
                   fontWeight='400'
                   fontSize='14px'
                   maxWidth='462px'
@@ -510,7 +507,7 @@ const CreateRaffleModal = ({ show, onClose, formData, setFormData, submit }: Pro
                   }}
                     name="agree1" checked={formData.agree1} />
                   <AcceptText>
-                    <b>*</b>I agree and accept the terms and services
+                    <b>*&nbsp;</b>I agree and accept the terms and services
                   </AcceptText>
                 </FlexBox>
                 <FlexBox gap="6px" justifyContent='start'>
@@ -522,7 +519,7 @@ const CreateRaffleModal = ({ show, onClose, formData, setFormData, submit }: Pro
                   }}
                     name="agree2" checked={formData.agree2} />
                   <AcceptText>
-                    <b>*</b>I agree and accept there is an Initiation Fee of ₳2 + 3% from the Raffle Ticket Pool
+                    <b>*&nbsp;</b>I agree and accept there is an Initiation Fee of ₳2 + 3% from the Raffle Ticket Pool
                   </AcceptText>
                 </FlexBox>
               </FlexBox>

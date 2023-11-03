@@ -1,4 +1,5 @@
 import MainLayout from 'components/layout'
+import NotFound from 'pages/NotFound'
 import About from 'pages/about'
 import FAQ from 'pages/faq'
 import FeeStructure from 'pages/fee-structure'
@@ -38,6 +39,7 @@ const MainRouter = () => {
             <Route path="/collections/:id" element={<SpecCollection />} />
           </>
         }
+        <Route path = "*" element = {<NotFound />} />
       </Route>
 
     </Routes>

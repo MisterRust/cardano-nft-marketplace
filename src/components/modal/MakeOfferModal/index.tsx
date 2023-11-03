@@ -9,7 +9,7 @@ import CustomText from 'components/common/CustomText';
 import { H3, H8 } from 'components/typography';
 import { getExactImageFormat } from 'hooks/function';
 import CustomInput from 'components/common/CustomInput';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { COLLECTION_DATA } from 'constants/document';
 import SelectCurrencyBox from 'components/select/SelectCurrencyBox';
 import SelectNFTBox from 'components/select/SelectNFTBox';
@@ -60,7 +60,6 @@ const Radio = styled.input`
     border: 1px solid #6073F6;
     width: 24px;
     height: 24px;
-    
 `
 
 interface Props {
@@ -68,7 +67,7 @@ interface Props {
     onClose: () => void;
     nftData: NFTDataProps;
     listedData: ListedData;
-    submitOffer: (price: number, policyId: string, asset: string) => Promise<void>;
+    submitOffer: (price: number, policyId: string, asset: string, tokenType: string, nftAssets: string[]) => Promise<void>;
 }
 const MakeOfferModal = ({ show, onClose, nftData, listedData, submitOffer }: Props) => {
     const [inputPrice, setInputPrice] = useState<number>(3)
@@ -80,7 +79,16 @@ const MakeOfferModal = ({ show, onClose, nftData, listedData, submitOffer }: Pro
     const [offerOption, setOfferOption] = useState<number>(0);
     const handleOfferTypeChange = (e) => {
         setOfferOption(Number(e.target.value));
+        if (Number(e.target.value) === 0) {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                selectedNFTs: []
+            }));
+        }
     };
+    useEffect(() => {
+        console.log("formData.selectedNFTs", formData)
+    }, [formData])
     return (
         <StyledModal show={show} onHide={onClose} centered contentClassName="connect-success-content">
             <Modal.Header closeButton>
@@ -225,7 +233,13 @@ const MakeOfferModal = ({ show, onClose, nftData, listedData, submitOffer }: Pro
                                     text='Next'
                                     width='286px'
                                     height='48px'
-                                    // disabled={!inputPrice || inputPrice < 3 || !nftData}
+                                    disabled={
+                                        offerOption === 0
+                                            ?
+                                            (inputPrice < 3 || !inputPrice)
+                                            :
+                                            (formData.selectedNFTs.length === 0 && true)
+                                    }
                                     onClick={() => {
                                         setStep(2)
                                     }}
@@ -236,57 +250,159 @@ const MakeOfferModal = ({ show, onClose, nftData, listedData, submitOffer }: Pro
                     {
                         step === 2 &&
                         <>
-                            <FlexBox marginTop='32.5px' paddingTop='32.5px' paddingBottom='30px' direction='column' borderTop='#cecece 1px solid' gap="12px">
-                                <FlexBox justifyContent='start' alignItems='center'>
-                                    <CustomText
-                                        text={`Offer Type:`}
-                                        fontFamily='Open Sans'
-                                        fontWeight='600'
-                                        fontSize='16px'
-                                    />
-                                    &nbsp;
-                                    <CustomText
-                                        text={` Currency(₳)`}
-                                        fontFamily='Open Sans'
-                                        fontWeight='600'
-                                        fontSize='16px'
-                                        color='#6073F6'
-                                    />
-                                </FlexBox>
-                                <FlexBox justifyContent='space-between' alignItems='center'>
-                                    <CustomText
-                                        text={`Offer Amount:`}
-                                        fontFamily='Open Sans'
-                                        fontWeight='600'
-                                        fontSize='16px'
-                                    />
-                                    <CustomText
-                                        text={`₳${inputPrice ? inputPrice : 0}`}
-                                        fontFamily='Open Sans'
-                                        fontWeight='600'
-                                        fontSize='16px'
-                                        color='#6073F6'
-                                    />
-                                </FlexBox>
-                            </FlexBox>
+                            {
+                                offerOption === 0 &&
+                                <>
+                                    <FlexBox marginTop='32.5px' paddingTop='32.5px' paddingBottom='30px' direction='column' borderTop='#cecece 1px solid' gap="12px">
+                                        <FlexBox justifyContent='start' alignItems='center'>
+                                            <CustomText
+                                                text={`Offer Type:`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                            />
+                                            &nbsp;
+                                            <CustomText
+                                                text={`Currency(${formData.currency})`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                                color='#6073F6'
+                                            />
+                                        </FlexBox>
+                                        <FlexBox justifyContent='space-between' alignItems='center'>
+                                            <CustomText
+                                                text={`Offer Amount:`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                            />
+                                            {
+                                                formData.currency === 'ADA' ?
+                                                    <CustomText
+                                                        text={`₳${inputPrice ? inputPrice : 0}`}
+                                                        fontFamily='Open Sans'
+                                                        fontWeight='600'
+                                                        fontSize='16px'
+                                                        color='#6073F6'
+                                                    />
+                                                    :
+                                                    <CustomText
+                                                        text={`${inputPrice ? inputPrice : 0}&nbsp;${formData.currency}`}
+                                                        fontFamily='Open Sans'
+                                                        fontWeight='600'
+                                                        fontSize='16px'
+                                                        color='#6073F6'
+                                                    />
+                                            }
 
-                            <FlexBox justifyContent='space-between' alignItems='center' gap="12px" paddingTop='12px'
-                                borderTop='#cecece 1px solid'
-                            >
-                                <CustomText
-                                    text={`Total Cost:`}
-                                    fontFamily='Open Sans'
-                                    fontWeight='600'
-                                    fontSize='16px'
-                                />
-                                <CustomText
-                                    text={`₳${inputPrice ? inputPrice : 0}`}
-                                    fontFamily='Open Sans'
-                                    fontWeight='700'
-                                    fontSize='28px'
-                                    color='#6073F6'
-                                />
-                            </FlexBox>
+
+                                        </FlexBox>
+                                    </FlexBox>
+
+                                    <FlexBox justifyContent='space-between' alignItems='center' gap="12px" paddingTop='12px'
+                                        borderTop='#cecece 1px solid'
+                                    >
+                                        <CustomText
+                                            text={`Total Cost:`}
+                                            fontFamily='Open Sans'
+                                            fontWeight='600'
+                                            fontSize='16px'
+                                        />
+                                        <CustomText
+                                            text={`₳${inputPrice ? inputPrice : 0}`}
+                                            fontFamily='Open Sans'
+                                            fontWeight='700'
+                                            fontSize='28px'
+                                            color='#6073F6'
+                                        />
+                                    </FlexBox>
+                                </>
+                            }
+                            {
+                                offerOption === 1 &&
+                                <>
+                                    <FlexBox marginTop='32.5px' paddingTop='32.5px' paddingBottom='30px' direction='column' borderTop='#cecece 1px solid' gap="12px">
+                                        <FlexBox justifyContent='start' alignItems='center'>
+                                            <CustomText
+                                                text={`Offer Type:`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                            />
+                                            &nbsp;
+                                            <CustomText
+                                                text={`NFT(s)`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                                color='#6073F6'
+                                            />
+                                        </FlexBox>
+                                        <FlexBox justifyContent='start' alignItems='start'>
+                                            <CustomText
+                                                text={`Offer:`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                                width='75px'
+                                            />
+                                            <FlexBox gap="25px" flexWrap='wrap'>
+                                                {
+                                                    formData.selectedNFTs.map((item, index) => {
+                                                        return (
+                                                            <CustomImage
+                                                                image={getExactImageFormat(item.image)}
+                                                                width='48px'
+                                                                height='48px'
+                                                                key={index}
+                                                            />
+                                                        )
+                                                    })
+                                                }
+                                            </FlexBox>
+
+                                        </FlexBox>
+                                        <FlexBox justifyContent='space-between' alignItems='center'>
+                                            <CustomText
+                                                text={`Service Fee (flat rate):`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                            />
+                                            <CustomText
+                                                text={`₳5`}
+                                                fontFamily='Open Sans'
+                                                fontWeight='600'
+                                                fontSize='16px'
+                                                color='#6073F6'
+                                            />
+                                        </FlexBox>
+                                    </FlexBox>
+                                    <FlexBox
+                                        justifyContent='space-between'
+                                        alignItems='center'
+                                        gap="12px"
+                                        paddingTop='12px'
+                                        borderTop='#cecece 1px solid'
+                                    >
+                                        <CustomText
+                                            text={`Total Cost:`}
+                                            fontFamily='Open Sans'
+                                            fontWeight='600'
+                                            fontSize='16px'
+                                        />
+                                        <CustomText
+                                            text={`₳5`}
+                                            fontFamily='Open Sans'
+                                            fontWeight='700'
+                                            fontSize='28px'
+                                            color='#6073F6'
+                                        />
+                                    </FlexBox>
+                                </>
+                            }
+
                             <FlexBox marginTop='56px' justifyContent='space-between' smJustifyContent='space-between'>
                                 <CustomBorderButton
                                     text="Back"
@@ -298,9 +414,15 @@ const MakeOfferModal = ({ show, onClose, nftData, listedData, submitOffer }: Pro
                                     text='Make Offer'
                                     width='268px'
                                     height='48px'
-                                    disabled={!inputPrice || inputPrice < 3 || !nftData}
+                                    disabled={
+                                        offerOption === 0
+                                            ?
+                                            (inputPrice < 3 || !inputPrice)
+                                            :
+                                            (formData.selectedNFTs.length === 0 && true)
+                                    }
                                     onClick={() => {
-                                        submitOffer(inputPrice, nftData.asset.slice(0, 56), nftData.asset.slice(56))
+                                        submitOffer(inputPrice, nftData.asset.slice(0, 56), nftData.asset.slice(56), formData.currency, formData.selectedNFTs.map(item => item.asset))
                                     }}
                                 />
                             </FlexBox>

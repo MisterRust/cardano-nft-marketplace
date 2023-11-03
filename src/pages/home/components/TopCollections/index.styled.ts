@@ -37,13 +37,13 @@ export const TopCollectionRow = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.1s;
+  transition: 0.2s;
   text-decoration: none;
   color: black;
   padding: 12px 24px 12px 42px;
   
   &:hover{
-    background-color: #ddd;
+    background-color: #dddddd;
     cursor: pointer;
   }
   @media screen and (max-width: 860px) {
@@ -365,9 +365,7 @@ export const TimeTab = styled.div<TimeTabProps>`
   align-items: center;
   background-color: ${props => props.active ? '#B0B9FB' : 'none'};
   cursor: pointer;
-  &:hover{
-    background-color: #ccc;
-  }
+  transition: all 0.3s ease-in-out;
   @media ${device.sm} {
     font-size: 16px;
     border-radius: 3px;

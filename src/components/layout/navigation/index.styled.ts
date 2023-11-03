@@ -13,15 +13,13 @@ export const NavWrapper = styled(Navbar)`
   .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
     color: white;
   }
-
-
   /* .navbar-toggler{
     border: #fef8e6 solid 1px;
   } */
   .navbar-toggler-icon{
     width: 42px;
     height: 28px;
-    background-image: url('/assets/images/icons/menu.svg');
+    background-image: url('/assets/images/icons/menu.png');
   }
   .dropdown-menu{
     border-radius: 0px;
@@ -48,12 +46,17 @@ export const NavWrapper = styled(Navbar)`
   }
 `;
 
+export const NavProfileImage = styled.img`
+  min-width: 51px;
+  height: 51px;
+  border-radius: 3px;
+`
 
 export const NavContainer = styled(Container)`
   width: 100%;
   padding-left: 84px;
   padding-right: 96px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1500px) {
     padding-left: 22px;
     padding-right: 4px;
   }
@@ -65,6 +68,9 @@ export const NavFlex = styled(Nav)`
   padding-right: 1rem; /* Equivalent to Bootstrap's pe-3 */
   gap: 46px; /* Equivalent to Bootstrap's gap-5 */
   align-items: center;
+  @media screen and (max-width: 1350px) {
+    gap: 15px;
+  }
   @media screen and (max-width: 670px) {
     align-items: start;
   }
@@ -90,6 +96,7 @@ export const DropdownToggle = styled(Dropdown.Toggle)`
   }
   @media screen and (max-width: 550px) {
     font-size: 28px;
+    height: 41px;
     background: none;
     color: white;
 
@@ -141,6 +148,7 @@ export const NavbarLink = styled(Link)`
   @media screen and (max-width: 550px) {
     font-size: 28px;
     font-weight: 700;
+    height: 41px;
   }
 `
 
